@@ -23,7 +23,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 	
-		Lieu potager = new Potager();
+		Potager potager = new Potager();
 		
 		Activity act = new Activity(LocalDate.of(2022, 23, 5), "La kermes du potager !", potager);
 		
