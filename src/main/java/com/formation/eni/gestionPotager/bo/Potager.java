@@ -1,5 +1,7 @@
 package com.formation.eni.gestionPotager.bo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,6 +26,7 @@ public class Potager {
 	private String nom;
 	private Integer aera;
 	private String city;
+	private List<Field> fields;
 
 	/**
 	 * Constructor without id
