@@ -46,7 +46,12 @@ public class Field {
 		this.groundType = groundType;
 		this.expositionType = expositionType;
 	}
-	
+
+	/**
+	 * To add an implementation in the field
+	 * 
+	 * @param implentation
+	 */
 	public void addImplentation(Implentation implentation) {
 		implentation.setField(this);
 		this.implentations.add(implentation);

@@ -28,7 +28,7 @@ public class Activity {
 	private LocalDate date;
 	private String evenement;
 	@ManyToOne
-	private Lieu lieu;
+	private Potager lieu;
 
 	/**
 	 * Constructor without id
@@ -37,7 +37,7 @@ public class Activity {
 	 * @param evenement
 	 * @param lieu
 	 */
-	public Activity(LocalDate date, String evenement, Lieu lieu) {
+	public Activity(LocalDate date, String evenement, Potager lieu) {
 		super();
 		this.date = date;
 		this.evenement = evenement;
