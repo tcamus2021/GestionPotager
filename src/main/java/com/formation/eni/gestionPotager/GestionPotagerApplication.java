@@ -2,10 +2,12 @@ package com.formation.eni.gestionPotager;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.formation.eni.gestionPotager.bll.PotagerManager;
 import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.ExpositionType;
 import com.formation.eni.gestionPotager.bo.Field;
@@ -18,6 +20,9 @@ import com.formation.eni.gestionPotager.bo.Potager;
 @SpringBootApplication
 public class GestionPotagerApplication implements CommandLineRunner {
 
+	@Autowired
+	PotagerManager man;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(GestionPotagerApplication.class, args);
 	}
