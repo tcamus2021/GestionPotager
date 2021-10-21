@@ -2,39 +2,76 @@ package com.formation.eni.gestionPotager.bll;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.Field;
 import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.Potager;
+import com.formation.eni.gestionPotager.dal.FieldDAO;
+import com.formation.eni.gestionPotager.dal.ImplentationDAO;
+import com.formation.eni.gestionPotager.dal.PotagerDAO;
 
 @Service
 public class PotagerManagerImpl implements PotagerManager {
 
 	private static Integer PLANTS_LIMIT = 3;
 
+	@Autowired
+	private PotagerDAO daoPotager;
+
+	@Autowired
+	private FieldDAO daoField;
+
+	@Autowired
+	private ImplentationDAO daoImplentation;
+
 	@Override
 	public void insertPotager(Potager potager) throws BLLexception {
-		System.out.println("insert");
+		try {
+			// TODO Verify if the garden is correct
+			potager.getFields().forEach(field -> {
+				((Field) field).getImplentations().forEach(implentation -> {
+					daoImplentation.save(implentation);
+				});
+				daoField.save(field);
+			});
+			daoPotager.save(potager);
+		} catch (Exception e) {
+			throw new BLLexception(e.getMessage());
+		}
 	}
 
 	@Override
 	public void updatePotager(Potager potager) throws BLLexception {
-		// TODO Auto-generated method 
-		System.out.println("updatePotager test conflict!");
+		try {
+			// TODO Verify if the garden is correct
+			potager.getFields().forEach(field -> {
+				((Field) field).getImplentations().forEach(implentation -> {
+					daoImplentation.save(implentation);
+				});
+				daoField.save(field);
+			});
+			daoPotager.save(potager);
+		} catch (Exception e) {
+			throw new BLLexception(e.getMessage());
+		}
 	}
 
 	@Override
 	public void deletePotager(Potager potager) throws BLLexception {
-		// TODO Auto-generated method stub
-		
+		int sizeBeforeAction = (int) daoPotager.count();
+		daoPotager.delete(potager);
+		int sizeAfterAction = (int) daoPotager.count();
+		if (sizeBeforeAction == sizeAfterAction) {
+			throw new BLLexception("There isn't this potager in the DataBase");
+		}
 	}
 
 	@Override
 	public List<Potager> getAllPotager() throws BLLexception {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Potager>) daoPotager.findAll();
 	}
 
 	@Override
