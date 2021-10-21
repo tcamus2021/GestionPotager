@@ -1,9 +1,12 @@
 package com.formation.eni.gestionPotager.bo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +29,11 @@ public class Field {
 	private Integer aera;
 	private GroundType groundType;
 	private ExpositionType expositionType;
+	@OneToMany
+	private List<Implentation> implentations;
 
 	/**
-	 * Constructor without id
+	 * Constructore without id and list
 	 * 
 	 * @param potager
 	 * @param aera
@@ -36,11 +41,20 @@ public class Field {
 	 * @param expositionType
 	 */
 	public Field(Potager potager, Integer aera, GroundType groundType, ExpositionType expositionType) {
-		super();
 		this.potager = potager;
 		this.aera = aera;
 		this.groundType = groundType;
 		this.expositionType = expositionType;
+	}
+
+	/**
+	 * To add an implementation in the field
+	 * 
+	 * @param implentation
+	 */
+	public void addImplentation(Implentation implentation) {
+		implentation.setField(this);
+		this.implentations.add(implentation);
 	}
 
 }

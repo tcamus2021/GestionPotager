@@ -1,8 +1,11 @@
 package com.formation.eni.gestionPotager.bo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +27,8 @@ public class Potager implements Lieu {
 	private String nom;
 	private Integer aera;
 	private String city;
+	@OneToMany
+	private List<Field> fields;
 
 	/**
 	 * Constructor without id
@@ -39,6 +44,16 @@ public class Potager implements Lieu {
 		this.nom = nom;
 		this.aera = aera;
 		this.city = city;
+	}
+
+	/**
+	 * To add a field in the garden
+	 * 
+	 * @param field
+	 */
+	public void addField(Field field) {
+		field.setPotager(this);
+		this.fields.add(field);
 	}
 
 }
