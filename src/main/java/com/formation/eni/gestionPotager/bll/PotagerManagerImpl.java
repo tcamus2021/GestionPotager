@@ -10,23 +10,27 @@ import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.Field;
 import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.Potager;
+import com.formation.eni.gestionPotager.dal.ActivityDAO;
 import com.formation.eni.gestionPotager.dal.FieldDAO;
 import com.formation.eni.gestionPotager.dal.ImplentationDAO;
+import com.formation.eni.gestionPotager.dal.PlantDAO;
 import com.formation.eni.gestionPotager.dal.PotagerDAO;
-import com.formation.eni.gestionPotager.dal.ActivityDAO;
 
 @Service
 public class PotagerManagerImpl implements PotagerManager {
 	private static Integer PLANTS_LIMIT = 3;
-	
+
 	@Autowired
-	ActivityDAO daoActivity;
+	private ActivityDAO daoActivity;
 
 	@Autowired
 	private PotagerDAO daoPotager;
 
 	@Autowired
 	private FieldDAO daoField;
+	
+	@Autowired
+	private PlantDAO daoPlant;
 
 	@Autowired
 	private ImplentationDAO daoImplentation;
@@ -69,7 +73,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		daoPotager.delete(potager);
 		int sizeAfterAction = (int) daoPotager.count();
 		if (sizeBeforeAction == sizeAfterAction) {
-			throw new BLLexception("There isn't this potager in the DataBase");
+			throw new BLLexception("BLL/deletePotager(): There isn't this potager in the DataBase");
 		}
 	}
 
@@ -104,8 +108,10 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	public void insertPlant(Plant plant) throws BLLexception {
-		// TODO Auto-generated method stub
-
+		if(!plantNotExist(plant.getName(), plant.getVariety())) {
+			throw new BLLexception("BLL/insertPlant(): IMPOSSIBLE, cette plante existe deja");
+		}
+		daoPlant.save(plant);
 	}
 
 	@Override
@@ -140,10 +146,10 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	public void addActivity(Activity activity) throws BLLexception {
-		if(!scheduledDateAfterToday(activity)) {
-			throw new BLLexception("Impossible d'insérer une activité postdaté");	
+		if (!scheduledDateAfterToday(activity)) {
+			throw new BLLexception("BLL/addActivity(): IMPOSSIBLE d'insérer une activité postdaté");
 		}
-		daoActivity.save(activity);	
+		daoActivity.save(activity);
 	}
 
 	@Override
@@ -151,8 +157,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		List<Activity> list = daoActivity.findAllForDateInterval(LocalDate.now(), LocalDate.now().plusWeeks(2));
 		StringBuffer sb = new StringBuffer();
 		for (Activity activity : list) {
-			sb.append(activity.toString());
-			sb.append("*******");
+			sb.append("*******").append(activity.toString());
 		};
 		return sb.toString();
 	}
@@ -205,8 +210,9 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @return
 	 */
 	private boolean plantNotExist(String name, String variety) {
-		// TODO
-		return true;
+		if(daoPlant.findByNameAndVariety(name, variety).size() > 0) {
+			return false;
+		} else return true;
 	}
 
 	/**
