@@ -16,6 +16,6 @@ import com.formation.eni.gestionPotager.bo.Activity;
  */
 public interface ActivityDAO extends CrudRepository<Activity, Integer> {
 	
-	@Query("FROM Activity a WHERE a.date BEETWEEN ?1 AND ?2")
+	@Query("FROM Activity a WHERE a.date BETWEEN ?1 AND ?2")
 	List<Activity> findAllForDateInterval(LocalDate firstDate, LocalDate lastDate);
 }

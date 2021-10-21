@@ -3,6 +3,8 @@ package com.formation.eni.gestionPotager.bll;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +14,14 @@ import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.Potager;
 import com.formation.eni.gestionPotager.dal.FieldDAO;
 import com.formation.eni.gestionPotager.dal.ImplentationDAO;
+import com.formation.eni.gestionPotager.dal.PlantDAO;
 import com.formation.eni.gestionPotager.dal.PotagerDAO;
 import com.formation.eni.gestionPotager.dal.ActivityDAO;
 
 @Service
 public class PotagerManagerImpl implements PotagerManager {
 	private static Integer PLANTS_LIMIT = 3;
-	
+
 	@Autowired
 	ActivityDAO daoActivity;
 
@@ -31,7 +34,11 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Autowired
 	private ImplentationDAO daoImplentation;
 
+	@Autowired
+	private PlantDAO daoPlant;
+
 	@Override
+	@Transactional
 	public void insertPotager(Potager potager) throws BLLexception {
 		try {
 			// TODO Verify if the garden is correct
@@ -48,6 +55,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	}
 
 	@Override
+	@Transactional
 	public void updatePotager(Potager potager) throws BLLexception {
 		try {
 			// TODO Verify if the garden is correct
@@ -64,6 +72,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	}
 
 	@Override
+	@Transactional
 	public void deletePotager(Potager potager) throws BLLexception {
 		int sizeBeforeAction = (int) daoPotager.count();
 		daoPotager.delete(potager);
@@ -74,102 +83,116 @@ public class PotagerManagerImpl implements PotagerManager {
 	}
 
 	@Override
+	@Transactional
 	public List<Potager> getAllPotager() throws BLLexception {
 		return (List<Potager>) daoPotager.findAll();
 	}
 
 	@Override
+	@Transactional
 	public void insertField(Field field) throws BLLexception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional
 	public void updateField(Field field) throws BLLexception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional
 	public void deleteField(Field field) throws BLLexception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional
 	public List<Field> getAllField() throws BLLexception {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Field>) daoField.findAll();
 	}
 
 	@Override
+	@Transactional
 	public void insertPlant(Plant plant) throws BLLexception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional
 	public void updatePlant(Plant plant) throws BLLexception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional
 	public void deletePlant(Plant plant) throws BLLexception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional
 	public List<Plant> getAllPlant() throws BLLexception {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Plant>) daoPlant.findAll();
 	}
 
 	@Override
+	@Transactional
 	public void addPlantInField(Field field, Plant plant) throws BLLexception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional
 	public String infoPotager(Potager potager) throws BLLexception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional
 	public void addActivity(Activity activity) throws BLLexception {
-		if(!scheduledDateAfterToday(activity)) {
-			throw new BLLexception("Impossible d'insérer une activité postdaté");	
+		if (!scheduledDateAfterToday(activity)) {
+			throw new BLLexception("Impossible d'insï¿½rer une activitï¿½ postdatï¿½");
 		}
-		daoActivity.save(activity);	
+		daoActivity.save(activity);
 	}
 
 	@Override
+	@Transactional
 	public String infoActivityTwoNextWeek() throws BLLexception {
 		List<Activity> list = daoActivity.findAllForDateInterval(LocalDate.now(), LocalDate.now().plusWeeks(2));
 		StringBuffer sb = new StringBuffer();
 		for (Activity activity : list) {
 			sb.append(activity.toString());
 			sb.append("*******");
-		};
+		}
 		return sb.toString();
 	}
 
 	@Override
+	@Transactional
 	public String getLocationPlantWithName(String name) throws BLLexception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional
 	public String getLocationPlantWithNameAndVariety(String name, String variety) throws BLLexception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional
 	public void removePlantInPotager(Potager potager, Plant plant) throws BLLexception {
 		// TODO Auto-generated method stub
 
