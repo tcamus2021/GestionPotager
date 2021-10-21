@@ -1,5 +1,6 @@
 package com.formation.eni.gestionPotager.bll;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,14 @@ import com.formation.eni.gestionPotager.bo.Potager;
 import com.formation.eni.gestionPotager.dal.FieldDAO;
 import com.formation.eni.gestionPotager.dal.ImplentationDAO;
 import com.formation.eni.gestionPotager.dal.PotagerDAO;
+import com.formation.eni.gestionPotager.dal.ActivityDAO;
 
 @Service
 public class PotagerManagerImpl implements PotagerManager {
-
 	private static Integer PLANTS_LIMIT = 3;
+	
+	@Autowired
+	ActivityDAO daoActivity;
 
 	@Autowired
 	private PotagerDAO daoPotager;
@@ -136,14 +140,21 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	public void addActivity(Activity activity) throws BLLexception {
-		// TODO Auto-generated method stub
-
+		if(!scheduledDateAfterToday(activity)) {
+			throw new BLLexception("Impossible d'insérer une activité postdaté");	
+		}
+		daoActivity.save(activity);	
 	}
 
 	@Override
 	public String infoActivityTwoNextWeek() throws BLLexception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Activity> list = daoActivity.findAllForDateInterval(LocalDate.now(), LocalDate.now().plusWeeks(2));
+		StringBuffer sb = new StringBuffer();
+		for (Activity activity : list) {
+			sb.append(activity.toString());
+			sb.append("*******");
+		};
+		return sb.toString();
 	}
 
 	@Override
