@@ -10,6 +10,6 @@ import com.formation.eni.gestionPotager.bo.Implentation;
  * @author tcamus2021
  *
  */
-public interface ImplementationDAO extends CrudRepository<Implentation, Integer> {
+public interface ImplentationDAO extends CrudRepository<Implentation, Integer> {
 
 }

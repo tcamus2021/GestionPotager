@@ -31,7 +31,7 @@ public class Plant {
 	 * @param name
 	 * @param plantType
 	 * @param variety
-	 * @param aera
+	 * @param aera (cm²)
 	 */
 	public Plant(String name, PlantType plantType, String variety, Integer aera) {
 		super();
