@@ -1,5 +1,6 @@
 package com.formation.eni.gestionPotager.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class Field {
 	private GroundType groundType;
 	private ExpositionType expositionType;
 	@OneToMany
-	private List<Implentation> implentations;
+	private List<Implentation> implentations = new ArrayList<Implentation>();
 
 	/**
 	 * Constructore without id and list

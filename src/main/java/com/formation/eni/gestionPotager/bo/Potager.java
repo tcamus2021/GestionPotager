@@ -1,5 +1,6 @@
 package com.formation.eni.gestionPotager.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ public class Potager implements Lieu {
 	private Integer aera;
 	private String city;
 	@OneToMany
-	private List<Field> fields;
+	private List<Field> fields = new ArrayList<Field>();
 
 	/**
 	 * Constructor without id
