@@ -1,10 +1,9 @@
 package com.formation.eni.gestionPotager.bo;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,11 +21,11 @@ public class Field {
 	@Id
 	@GeneratedValue
 	private Integer idField;
+	@ManyToOne
 	private Potager potager;
 	private Integer aera;
 	private GroundType groundType;
 	private ExpositionType expositionType;
-	private List<Implentation> implentations;
 
 	/**
 	 * Constructor without id

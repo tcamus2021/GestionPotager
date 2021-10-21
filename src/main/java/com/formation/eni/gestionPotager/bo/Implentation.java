@@ -1,10 +1,13 @@
 package com.formation.eni.gestionPotager.bo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +28,10 @@ public class Implentation {
 	private Integer nbPlant;
 	private LocalDate establishment;
 	private LocalDate harvest;
-	private Plant plant;
+	@ManyToMany
+	private List<Plant> plants;
+	@ManyToOne
+	private Field field;
 
 	/**
 	 * Constructor with id
@@ -35,11 +41,19 @@ public class Implentation {
 	 * @param harvest
 	 * @param plant
 	 */
-	public Implentation(Integer nbPlant, LocalDate establishment, LocalDate harvest, Plant plant) {
+	public Implentation(Integer nbPlant, LocalDate establishment, LocalDate harvest) {
 		this.nbPlant = nbPlant;
 		this.establishment = establishment;
 		this.harvest = harvest;
-		this.plant = plant;
+	}
+
+	/**
+	 * To add a plant in the garden
+	 * 
+	 * @param plant
+	 */
+	public void addPlant(Plant plant) {
+		this.plants.add(plant);
 	}
 
 }
