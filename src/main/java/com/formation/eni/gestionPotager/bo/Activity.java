@@ -11,6 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Object of an event
+ * 
+ * @author tcamus2021
+ *
+ */
 @Data
 @Entity
 @NoArgsConstructor
@@ -23,4 +29,19 @@ public class Activity {
 	private String evenement;
 	@ManyToOne
 	private Lieu lieu;
+
+	/**
+	 * Constructor without id
+	 * 
+	 * @param date
+	 * @param evenement
+	 * @param lieu
+	 */
+	public Activity(LocalDate date, String evenement, Lieu lieu) {
+		super();
+		this.date = date;
+		this.evenement = evenement;
+		this.lieu = lieu;
+	}
+
 }
