@@ -23,14 +23,12 @@ public class PotagerManagerImpl implements PotagerManager {
 	public void updatePotager(Potager potager) throws BLLexception {
 		// TODO Auto-generated method 
 		System.out.println("updatePotager test conflict!");
-		
-
 	}
 
 	@Override
 	public void deletePotager(Potager potager) throws BLLexception {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
