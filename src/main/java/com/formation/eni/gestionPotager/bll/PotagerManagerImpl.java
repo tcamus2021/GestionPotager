@@ -244,7 +244,9 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @return
 	 */
 	private boolean scheduledDateAfterToday(Activity activity) {
-		// TODO
+		if(activity.getDate().isBefore(LocalDate.now())) {
+			return false;
+		}
 		return true;
 	}
 
