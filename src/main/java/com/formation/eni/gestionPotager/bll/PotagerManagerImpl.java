@@ -16,8 +16,7 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	public void insertPotager(Potager potager) throws BLLexception {
-		// TODO Auto-generated method stub
-		
+		System.out.println("insert");
 	}
 
 	@Override
