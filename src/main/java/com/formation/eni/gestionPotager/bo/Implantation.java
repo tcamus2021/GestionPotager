@@ -41,11 +41,10 @@ public class Implantation {
 	 * @param harvest
 	 * @param plant
 	 */
-	public Implantation(Plant plant, Integer nbPlant, LocalDate establishment, LocalDate harvest, Field field) {
+	public Implantation(Plant plant, Integer nbPlant, LocalDate establishment, LocalDate harvest) {
 		this.plant = plant;
 		this.nbPlant = nbPlant;
 		this.establishment = establishment;
 		this.harvest = harvest;
-		this.field = field;
 	}
 }

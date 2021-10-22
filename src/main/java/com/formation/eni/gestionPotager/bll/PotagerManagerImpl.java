@@ -78,6 +78,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void deletePotager(Potager potager) throws BLLexception {
+		// TODO delete in cascade
 		int sizeBeforeAction = (int) daoPotager.count();
 		daoPotager.delete(potager);
 		int sizeAfterAction = (int) daoPotager.count();
@@ -127,6 +128,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void deleteField(Field field) throws BLLexception {
+		// TODO delete in cascade
 		int sizeBeforeAction = (int) daoField.count();
 		daoField.delete(field);
 		int sizeAfterAction = (int) daoField.count();
@@ -153,15 +155,22 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void updatePlant(Plant plant) throws BLLexception {
-		// TODO Auto-generated method stub
-
+		if (!plantNotExist(plant.getName(), plant.getVariety())) {
+			throw new BLLexception("BLL/insertPlant(): IMPOSSIBLE, cette plante existe deja");
+		}
+		daoPlant.save(plant);
 	}
 
 	@Override
 	@Transactional
 	public void deletePlant(Plant plant) throws BLLexception {
-		// TODO Auto-generated method stub
-
+		// TODO delete in cascade
+		int sizeBeforeAction = (int) daoPlant.count();
+		daoPlant.delete(plant);
+		int sizeAfterAction = (int) daoPlant.count();
+		if (sizeBeforeAction == sizeAfterAction) {
+			throw new BLLexception("BLL/deletePotager(): There isn't this potager in the DataBase");
+		}
 	}
 
 	@Override
