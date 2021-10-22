@@ -217,7 +217,6 @@ public class PotagerManagerImpl implements PotagerManager {
 		for (Activity activity : list) {
 			sb.append("*******").append(activity.toString());
 		}
-		;
 		return sb.toString();
 	}
 
@@ -286,8 +285,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean scheduledDateAfterToday(Activity activity) {
 		if (activity.getDate().isBefore(LocalDate.now())) {
 			return false;
-		} else
-			return true;
+		} else return true;
 	}
 
 	/**
@@ -304,7 +302,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			}
 		}
 		if(lstPlant.contains(implantation.getPlant())) {
-			return true;
+			return false;
 		}
 		if(lstPlant.size() > PLANTS_LIMIT) {
 			return true;
