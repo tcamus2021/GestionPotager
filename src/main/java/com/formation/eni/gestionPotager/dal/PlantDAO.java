@@ -15,6 +15,6 @@ import com.formation.eni.gestionPotager.bo.Plant;
  *
  */
 public interface PlantDAO extends CrudRepository<Plant, Integer> {
-
+	
 	List<Plant> findByNameAndVariety(String name, String variety);
 }

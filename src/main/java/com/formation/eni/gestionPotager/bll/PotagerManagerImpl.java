@@ -173,7 +173,10 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void deletePlant(Plant plant) throws BLLexception {
-		// TODO delete in cascade
+		List<Implantation> implantations = daoImplantation.findAllWherePlantIs(plant.getName(), plant.getVariety());
+		implantations.forEach(implementation -> {
+			daoImplantation.delete(implementation);
+		});
 		int sizeBeforeAction = (int) daoPlant.count();
 		daoPlant.delete(plant);
 		int sizeAfterAction = (int) daoPlant.count();

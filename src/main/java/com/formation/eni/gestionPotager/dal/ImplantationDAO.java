@@ -15,7 +15,15 @@ import com.formation.eni.gestionPotager.bo.Implantation;
  *
  */
 public interface ImplantationDAO extends CrudRepository<Implantation, Integer> {
-	
+
+	/**
+	 * Find all the implanation where the plant is
+	 * 
+	 * @param name
+	 * @param variety
+	 * @return
+	 */
+	// TODO vérifier avec un paramètre
 	@Query("SELECT i FROM Implantation i WHERE i.plant.name = :name AND "
 			+ "(i.plant.variety IS NULL OR i.plant.variety = :variety)")
 	List<Implantation> findAllWherePlantIs(@Param("name") String name, @Param("variety") String variety);

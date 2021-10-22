@@ -98,6 +98,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 			manager.insertPotager(potager2);
 			manager.insertPotager(potager3);
 			manager.deletePotager(potager3);
+			manager.deletePlant(plant4);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
