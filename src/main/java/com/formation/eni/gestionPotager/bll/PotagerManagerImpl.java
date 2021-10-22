@@ -198,8 +198,22 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public String infoPotager(Potager potager) throws BLLexception {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder sb = new StringBuilder("[Potager :");
+		sb.append(" Name = " + potager.getNom());
+		sb.append(", Location = " + potager.getLocation());
+		sb.append(", City = " + potager.getCity());
+		sb.append(", Aera = " + potager.getAera()+"m²");
+		sb.append("\n\tFields = {");
+		potager.getFields().forEach(field -> {
+			sb.append("\n\t\t" + "Field number " + field.getIdField() + " :");
+			sb.append(" Aera = " + field.getAera());
+			sb.append(", Ground Type = " + field.getGroundType());
+			sb.append(", Exposition Type = " + field.getExpositionType());
+			sb.append(",");
+		});
+		sb.append("\n\t}");
+		sb.append("\n]");
+		return sb.toString();
 	}
 
 	@Override
