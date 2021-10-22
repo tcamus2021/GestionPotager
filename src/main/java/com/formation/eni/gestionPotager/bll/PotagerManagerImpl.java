@@ -184,15 +184,16 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void addImplentationInField(Field field, Implantation implantation) throws BLLexception {
-		if(!limitOfPlantsNotReached(field, implantation)) {
-			throw new BLLexception("BLL/addPlantInField(): IMPOSSIBLE limit of different Plant already reached for this Field");
-		}if(!sizeOfPlantsLowerThanField(field, implantation)) {
+		if (!limitOfPlantsNotReached(field, implantation)) {
+			throw new BLLexception(
+					"BLL/addPlantInField(): IMPOSSIBLE limit of different Plant already reached for this Field");
+		}
+		if (!sizeOfPlantsLowerThanField(field, implantation)) {
 			throw new BLLexception("BLL/addPlantInField(): IMPOSSIBLE this Plant have not enough place in this Field");
 		}
-		
+
 		// TODO AJOUT dans l'objet avant la sauvegarde
-		
-		
+
 	}
 
 	@Override
@@ -202,7 +203,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		sb.append(" Name = " + potager.getNom());
 		sb.append(", Location = " + potager.getLocation());
 		sb.append(", City = " + potager.getCity());
-		sb.append(", Aera = " + potager.getAera()+"m²");
+		sb.append(", Aera = " + potager.getAera() + "m²");
 		sb.append("\n\tFields = {");
 		potager.getFields().forEach(field -> {
 			sb.append("\n\t\t" + "Field number " + field.getIdField() + " :");
@@ -268,9 +269,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		for (Field carre : potager.getFields()) {
 			sumOfFields += carre.getAera();
 		}
-		if(sumOfFields 
-				+ METER_COEFF*field.getAera() 
-				> METER_COEFF*potager.getAera() ) {
+		if (sumOfFields + METER_COEFF * field.getAera() > METER_COEFF * potager.getAera()) {
 			return false;
 		}
 		return true;
@@ -285,11 +284,10 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean sizeOfPlantsLowerThanField(Field field, Implantation implantation) {
 		Integer sumOfPlants = 0;
 		for (Implantation implant : field.getImplantations()) {
-			sumOfPlants += implant.getPlant().getAera()*implant.getNbPlant();
+			sumOfPlants += implant.getPlant().getAera() * implant.getNbPlant();
 		}
-		if(sumOfPlants 
-				+ CENTIMETER_COEFF*implantation.getPlant().getAera()*implantation.getNbPlant() 
-				> METER_COEFF*field.getAera() ) {
+		if (sumOfPlants + CENTIMETER_COEFF * implantation.getPlant().getAera() * implantation.getNbPlant() > METER_COEFF
+				* field.getAera()) {
 			return false;
 		}
 		return true;
@@ -305,7 +303,8 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean plantNotExist(String name, String variety) {
 		if (daoPlant.findByNameAndVariety(name, variety).size() > 0) {
 			return false;
-		} else return true;
+		} else
+			return true;
 	}
 
 	/**
@@ -317,7 +316,8 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean scheduledDateAfterToday(Activity activity) {
 		if (activity.getDate().isBefore(LocalDate.now())) {
 			return false;
-		} else return true;
+		} else
+			return true;
 	}
 
 	/**
@@ -329,16 +329,71 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean limitOfPlantsNotReached(Field field, Implantation implantation) {
 		List<Plant> lstPlant = new ArrayList<Plant>();
 		for (Implantation implant : field.getImplantations()) {
-			if(!lstPlant.contains(implant.getPlant())) {
+			if (!lstPlant.contains(implant.getPlant())) {
 				lstPlant.add(implant.getPlant());
 			}
 		}
-		if(lstPlant.contains(implantation.getPlant())) {
+		if (lstPlant.contains(implantation.getPlant())) {
 			return false;
 		}
-		if(lstPlant.size() > PLANTS_LIMIT) {
+		if (lstPlant.size() > PLANTS_LIMIT) {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Validate Activity Object
+	 * 
+	 * @param activity
+	 * @return
+	 */
+	private boolean activityValidator(Activity activity) {
+
+		return true;
+	}
+
+	/**
+	 * Validate Field Object
+	 * 
+	 * @param field
+	 * @return
+	 */
+	private boolean fieldValidator(Field field) {
+
+		return true;
+	}
+
+	/**
+	 * Validate Implantation Object
+	 * 
+	 * @param implantation
+	 * @return
+	 */
+	private boolean implantationValidator(Implantation implantation) {
+
+		return true;
+	}
+
+	/**
+	 * Validate Plant Object
+	 * 
+	 * @param plant
+	 * @return
+	 */
+	private boolean plantValidator(Plant plant) {
+
+		return true;
+	}
+
+	/**
+	 * Validate Potager Object
+	 * 
+	 * @param potager
+	 * @return
+	 */
+	private boolean potagerValidator(Potager potager) {
+
+		return true;
 	}
 }
