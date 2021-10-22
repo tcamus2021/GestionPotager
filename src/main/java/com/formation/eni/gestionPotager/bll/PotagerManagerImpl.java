@@ -286,8 +286,8 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param field
 	 * @return
 	 */
-	private boolean limitOfPlantsNotReached(Field field, Implentation implentationt) {
-		// TODO
+	private boolean limitOfPlantsNotReached(Field field, Implentation implentation) {
+		if (field.getImplentations())
 		return true;
 	}
 }
