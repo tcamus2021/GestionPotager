@@ -23,8 +23,8 @@ import com.formation.eni.gestionPotager.dal.PotagerDAO;
 @Service
 public class PotagerManagerImpl implements PotagerManager {
 	private static Integer PLANTS_LIMIT = 3;
-	private static Integer METER_COEFF = 10000; // for m²
-	private static Integer CENTIMETER_COEFF = 1; // for cm²
+	private static Integer METER_COEFF = 10000; // for mï¿½
+	private static Integer CENTIMETER_COEFF = 1; // for cmï¿½
 
 	@Autowired
 	private ActivityDAO daoActivity;
@@ -45,7 +45,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void insertPotager(Potager potager) throws BLLexception {
 		try {
-			// TODO Verify if the garden is correct
+			potagerValidator(potager);
 			potager.getFields().forEach(field -> {
 				((Field) field).getImplantations().forEach(implentation -> {
 					daoPlant.save(implentation.getPlant());
@@ -63,7 +63,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void updatePotager(Potager potager) throws BLLexception {
 		try {
-			// TODO Verify if the garden is correct
+			potagerValidator(potager);
 			potager.getFields().forEach(field -> {
 				((Field) field).getImplantations().forEach(implentation -> {
 					daoPlant.save(implentation.getPlant());
@@ -349,8 +349,6 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @return
 	 */
 	private boolean activityValidator(Activity activity) throws BLLexception {
-		StringBuilder erreur = new StringBuilder("");
-
 		return true;
 	}
 
@@ -360,9 +358,32 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param field
 	 * @return
 	 */
-	private boolean fieldValidator(Field field) throws BLLexception {
-
-		return true;
+	private void fieldValidator(Field field) throws BLLexception {
+		StringBuilder error = new StringBuilder("");
+		if(field.getGroundType() == null) {
+			error.append("The ground type is incorect");
+		}
+		if(field.getPotager() == null) {
+			error.append("The potager is incorect");
+		}
+		if(field.getExpositionType() == null) {
+			error.append("The exposition type is incorect");
+		}
+		if(field.getAera() <= 0 || field.getAera() == null) {
+			error.append("The area is incorect");
+		}
+		
+		field.getImplantations().forEach(implantation -> {
+			try {
+				implantationValidator(implantation);
+			} catch (BLLexception e) {
+				error.append(e.getMessage());
+			}
+		});
+		
+		if (!"".equals(error)) {
+			throw new BLLexception(error.toString());
+		}
 	}
 
 	/**
@@ -397,8 +418,31 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param potager
 	 * @return
 	 */
-	private boolean potagerValidator(Potager potager) throws BLLexception {
+	private void potagerValidator(Potager potager) throws BLLexception {
+		StringBuilder error = new StringBuilder("");
+		if (potager.getNom() == null || "".equals(potager.getNom())) {
+			error.append("The name is incorect");
+		}
+		if (potager.getLocation() == null || "".equals(potager.getLocation())) {
+			error.append("The location is incorect");
+		}
+		if (potager.getCity() == null || "".equals(potager.getCity())) {
+			error.append("The city is incorect");
+		}
+		if (potager.getAera() == null || potager.getAera() <= 0) {
+			error.append("The area is incorect");
+		}
 
-		return true;
+		potager.getFields().forEach(field -> {
+			try {
+				fieldValidator(field);
+			} catch (BLLexception e) {
+				error.append(e.getMessage());
+			}
+		});
+
+		if (!"".equals(error)) {
+			throw new BLLexception(error.toString());
+		}
 	}
 }
