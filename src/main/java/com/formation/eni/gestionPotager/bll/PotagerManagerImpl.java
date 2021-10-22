@@ -80,6 +80,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void deletePotager(Potager potager) throws BLLexception {
+		// TODO cascade on activity
 		potager.getFields().forEach(field -> {
 			field.getImplantations().forEach(implantation -> {
 				daoImplantation.delete(implantation);
@@ -250,18 +251,14 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public String getPlantLocationsInfoWithName(String name) throws BLLexception {
-		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name,null);
+		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name, null);
 		StringBuffer sb = new StringBuffer();
 		for (Implantation implant : list) {
-			sb.append("***"+implant.getPlant().getName()+"***"
-					+"\n-- Variety : "+implant.getPlant().getVariety()
-					+"\n-- Planted in field : "
-					+"\n   exposition - "+implant.getField().getExpositionType()
-					+"\n   ground - "+implant.getField().getGroundType()
-					+"\n   quantity - "+implant.getNbPlant() 
-					+"\n  -> Potager : "+implant.getField().getPotager().getNom()
-					+"\n  			-> "+implant.getField().getPotager().getLocation()
-					+", "+implant.getField().getPotager().getCity());
+			sb.append("***" + implant.getPlant().getName() + "***" + "\n-- Variety : " + implant.getPlant().getVariety()
+					+ "\n-- Planted in field : " + "\n   exposition - " + implant.getField().getExpositionType()
+					+ "\n   ground - " + implant.getField().getGroundType() + "\n   quantity - " + implant.getNbPlant()
+					+ "\n  -> Potager : " + implant.getField().getPotager().getNom() + "\n  			-> "
+					+ implant.getField().getPotager().getLocation() + ", " + implant.getField().getPotager().getCity());
 		}
 		return sb.toString();
 	}
@@ -269,18 +266,14 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public String getPlantLocationsInfoWithNameAndVariety(String name, String variety) throws BLLexception {
-		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name,variety);
+		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name, variety);
 		StringBuffer sb = new StringBuffer();
 		for (Implantation implant : list) {
-			sb.append("***"+implant.getPlant().getName()+"***"
-					+"\n-- Variety : "+implant.getPlant().getVariety()
-					+"\n-- Planted in field : "
-					+"\n   exposition - "+implant.getField().getExpositionType()
-					+"\n   ground - "+implant.getField().getGroundType()
-					+"\n   quantity - "+implant.getNbPlant() 
-					+"\n  -> Potager : "+implant.getField().getPotager().getNom()
-					+"\n  			-> "+implant.getField().getPotager().getLocation()
-					+", "+implant.getField().getPotager().getCity());
+			sb.append("***" + implant.getPlant().getName() + "***" + "\n-- Variety : " + implant.getPlant().getVariety()
+					+ "\n-- Planted in field : " + "\n   exposition - " + implant.getField().getExpositionType()
+					+ "\n   ground - " + implant.getField().getGroundType() + "\n   quantity - " + implant.getNbPlant()
+					+ "\n  -> Potager : " + implant.getField().getPotager().getNom() + "\n  			-> "
+					+ implant.getField().getPotager().getLocation() + ", " + implant.getField().getPotager().getCity());
 		}
 		return sb.toString();
 	}
