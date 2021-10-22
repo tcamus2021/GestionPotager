@@ -349,6 +349,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @return
 	 */
 	private boolean activityValidator(Activity activity) throws BLLexception {
+		StringBuilder erreur = new StringBuilder("");
 
 		return true;
 	}
@@ -382,7 +383,11 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @return
 	 */
 	private boolean plantValidator(Plant plant) throws BLLexception {
-
+		StringBuilder erreur = new StringBuilder("");
+		// TODO todo tout
+		if (plant.getName() == null || "".equals(plant.getName())) {
+	        erreur.append("Pas de nom\n");
+	    }
 		return true;
 	}
 
