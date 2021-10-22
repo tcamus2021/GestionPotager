@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.Field;
+import com.formation.eni.gestionPotager.bo.Implentation;
 import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.Potager;
 import com.formation.eni.gestionPotager.dal.ActivityDAO;
@@ -146,9 +147,16 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	@Transactional
-	public void addPlantInField(Field field, Plant plant) throws BLLexception {
-		// TODO Auto-generated method stub
-
+	public void addImplentationInField(Field field, Implentation implentation) throws BLLexception {
+		if(!limitOfPlantsNotReached(field, implentation)) {
+			throw new BLLexception("BLL/addPlantInField(): IMPOSSIBLE limit of different Plant already reached for this Field");
+		}if(!sizeOfPlantsLowerThanField(field, implentation)) {
+			throw new BLLexception("BLL/addPlantInField(): IMPOSSIBLE this Plant have not enough place in this Field");
+		}
+		
+		// TODO AJOUT dans l'objet avant la sauvegarde
+		
+		
 	}
 
 	@Override
@@ -162,7 +170,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void addActivity(Activity activity) throws BLLexception {
 		if (!scheduledDateAfterToday(activity)) {
-			throw new BLLexception("BLL/addActivity(): IMPOSSIBLE d'ins�rer une activit� postdat�");
+			throw new BLLexception("BLL/addActivity(): IMPOSSIBLE cannot add postated Activity");
 		}
 		daoActivity.save(activity);
 	}
@@ -217,7 +225,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param field
 	 * @return
 	 */
-	private boolean sizeOfPlantsLowerThanField(Field field) {
+	private boolean sizeOfPlantsLowerThanField(Field field, Implentation implentation) {
 		// TODO
 		return true;
 	}
@@ -232,8 +240,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean plantNotExist(String name, String variety) {
 		if (daoPlant.findByNameAndVariety(name, variety).size() > 0) {
 			return false;
-		} else
-			return true;
+		} else return true;
 	}
 
 	/**
@@ -254,7 +261,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param field
 	 * @return
 	 */
-	private boolean limitOfPlantsNotReached(Field field) {
+	private boolean limitOfPlantsNotReached(Field field, Implentation implentationt) {
 		// TODO
 		return true;
 	}

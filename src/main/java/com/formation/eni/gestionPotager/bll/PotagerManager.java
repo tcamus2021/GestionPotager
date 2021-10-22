@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.Field;
+import com.formation.eni.gestionPotager.bo.Implentation;
 import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.Potager;
 
@@ -111,7 +112,7 @@ public interface PotagerManager {
 	 * @param plant
 	 * @throws BLLexception
 	 */
-	public void addPlantInField(Field field, Plant plant) throws BLLexception;
+	public void addImplentationInField(Field field, Implentation implentation) throws BLLexception;
 
 	/**
 	 * To have the informations on a potage
