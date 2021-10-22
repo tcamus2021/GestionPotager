@@ -30,15 +30,12 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Autowired
 	private FieldDAO daoField;
-	
+
 	@Autowired
 	private PlantDAO daoPlant;
 
 	@Autowired
 	private ImplentationDAO daoImplentation;
-
-	@Autowired
-	private PlantDAO daoPlant;
 
 	@Override
 	@Transactional
@@ -121,7 +118,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void insertPlant(Plant plant) throws BLLexception {
-		if(!plantNotExist(plant.getName(), plant.getVariety())) {
+		if (!plantNotExist(plant.getName(), plant.getVariety())) {
 			throw new BLLexception("BLL/insertPlant(): IMPOSSIBLE, cette plante existe deja");
 		}
 		daoPlant.save(plant);
@@ -165,7 +162,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void addActivity(Activity activity) throws BLLexception {
 		if (!scheduledDateAfterToday(activity)) {
-			throw new BLLexception("BLL/addActivity(): IMPOSSIBLE d'insérer une activité postdaté");
+			throw new BLLexception("BLL/addActivity(): IMPOSSIBLE d'insï¿½rer une activitï¿½ postdatï¿½");
 		}
 		daoActivity.save(activity);
 	}
@@ -177,7 +174,8 @@ public class PotagerManagerImpl implements PotagerManager {
 		StringBuffer sb = new StringBuffer();
 		for (Activity activity : list) {
 			sb.append("*******").append(activity.toString());
-		};
+		}
+		;
 		return sb.toString();
 	}
 
@@ -232,9 +230,10 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @return
 	 */
 	private boolean plantNotExist(String name, String variety) {
-		if(daoPlant.findByNameAndVariety(name, variety).size() > 0) {
+		if (daoPlant.findByNameAndVariety(name, variety).size() > 0) {
 			return false;
-		} else return true;
+		} else
+			return true;
 	}
 
 	/**
@@ -244,7 +243,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @return
 	 */
 	private boolean scheduledDateAfterToday(Activity activity) {
-		if(activity.getDate().isBefore(LocalDate.now())) {
+		if (activity.getDate().isBefore(LocalDate.now())) {
 			return false;
 		}
 		return true;

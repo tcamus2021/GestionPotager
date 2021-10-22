@@ -30,7 +30,7 @@ public class Field {
 	private Integer aera;
 	private GroundType groundType;
 	private ExpositionType expositionType;
-	@OneToMany
+	@OneToMany(mappedBy = "field")
 	private List<Implentation> implentations = new ArrayList<Implentation>();
 
 	/**
