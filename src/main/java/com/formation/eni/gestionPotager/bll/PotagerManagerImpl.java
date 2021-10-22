@@ -23,9 +23,9 @@ import com.formation.eni.gestionPotager.dal.PotagerDAO;
 @Service
 public class PotagerManagerImpl implements PotagerManager {
 	private static Integer PLANTS_LIMIT = 3;
-	private static Integer METER_COEFF = 10000; // for m�
-	private static Integer CENTIMETER_COEFF = 1; // for cm�
-
+	private static Integer METER_COEFF = 10000; // for 'square meter'
+	private static Integer CENTIMETER_COEFF = 1; // for 'square centimeter'
+	
 	@Autowired
 	private ActivityDAO daoActivity;
 
@@ -202,7 +202,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		if (!sizeOfPlantsLowerThanField(field, implantation)) {
 			throw new BLLexception("BLL/addPlantInField(): IMPOSSIBLE this Plant have not enough place in this Field");
 		}
-
+		
 		// TODO AJOUT dans l'objet avant la sauvegarde
 
 	}

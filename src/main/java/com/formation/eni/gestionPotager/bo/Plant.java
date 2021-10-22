@@ -23,7 +23,7 @@ public class Plant {
 	private String name;
 	private PlantType plantType;
 	private String variety;
-	private Integer aera; // (cm²)
+	private Integer aera; // (square centimeter)
 
 	/**
 	 * Constructor without id

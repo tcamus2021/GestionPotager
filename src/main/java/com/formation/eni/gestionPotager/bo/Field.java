@@ -28,7 +28,7 @@ public class Field {
 	private Integer idField;
 	@ManyToOne
 	private Potager potager;
-	private Integer aera; // (m�)
+	private Integer aera; // (square meter)
 	private GroundType groundType;
 	private ExpositionType expositionType;
 	@OneToMany(mappedBy = "field")
