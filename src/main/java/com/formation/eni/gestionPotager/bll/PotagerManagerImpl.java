@@ -239,33 +239,40 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	@Transactional
-	public String getLocationPlantWithName(String name) throws BLLexception {
-		// TODO Auto-generated method stub
-		// => detail de la plant 
-		// 	+ Lister chaque occurence d'une plant 
-		// 	+ donner nom du Potager + info du Carre 
-		
-		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name);
+	public String getPlantLocationsInfoWithName(String name) throws BLLexception {
+		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name,null);
 		StringBuffer sb = new StringBuffer();
-		for (Implantation implantation : list) {
-			
+		for (Implantation implant : list) {
+			sb.append("***"+implant.getPlant().getName()+"***"
+					+"\n-- Variety : "+implant.getPlant().getVariety()
+					+"\n-- Planted in field : "
+					+"\n   exposition - "+implant.getField().getExpositionType()
+					+"\n   ground - "+implant.getField().getGroundType()
+					+"\n   quantity - "+implant.getNbPlant() 
+					+"\n  -> Potager : "+implant.getField().getPotager().getNom()
+					+"\n  			-> "+implant.getField().getPotager().getLocation()
+					+", "+implant.getField().getPotager().getCity());
 		}
-		
-			sb.append("*******");
-		
-		
 		return sb.toString();
-	
 	}
 
 	@Override
 	@Transactional
-	public String getLocationPlantWithNameAndVariety(String name, String variety) throws BLLexception {
-		// TODO Auto-generated method stub
-		// => detail de la plant 
-		// 	+ Lister chaque occurence d'une plant 
-		// 	+ donner nom du Potager + info du Carre 
-		return null;
+	public String getPlantLocationsInfoWithNameAndVariety(String name, String variety) throws BLLexception {
+		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name,variety);
+		StringBuffer sb = new StringBuffer();
+		for (Implantation implant : list) {
+			sb.append("***"+implant.getPlant().getName()+"***"
+					+"\n-- Variety : "+implant.getPlant().getVariety()
+					+"\n-- Planted in field : "
+					+"\n   exposition - "+implant.getField().getExpositionType()
+					+"\n   ground - "+implant.getField().getGroundType()
+					+"\n   quantity - "+implant.getNbPlant() 
+					+"\n  -> Potager : "+implant.getField().getPotager().getNom()
+					+"\n  			-> "+implant.getField().getPotager().getLocation()
+					+", "+implant.getField().getPotager().getCity());
+		}
+		return sb.toString();
 	}
 
 	@Override

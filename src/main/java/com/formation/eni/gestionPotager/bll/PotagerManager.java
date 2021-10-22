@@ -146,7 +146,7 @@ public interface PotagerManager {
 	 * @return
 	 * @throws BLLexception
 	 */
-	public String getLocationPlantWithName(String name) throws BLLexception;
+	public String getPlantLocationsInfoWithName(String name) throws BLLexception;
 
 	/**
 	 * To get where is a plant with the name and the variety
@@ -156,7 +156,7 @@ public interface PotagerManager {
 	 * @return
 	 * @throws BLLexception
 	 */
-	public String getLocationPlantWithNameAndVariety(String name, String variety) throws BLLexception;
+	public String getPlantLocationsInfoWithNameAndVariety(String name, String variety) throws BLLexception;
 
 	/**
 	 * To remove a plant in a potage
