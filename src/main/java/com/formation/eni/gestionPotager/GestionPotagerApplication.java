@@ -2,6 +2,8 @@ package com.formation.eni.gestionPotager;
 
 import java.time.LocalDate;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,12 +30,13 @@ public class GestionPotagerApplication implements CommandLineRunner {
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		// Data garden
 		Potager potager1 = new Potager("Chez Rene", "MonPotagerIncroyable", 30, "Penmarc'h");
 		Potager potager2 = new Potager("Chez Thierry", "MonIgnoblePotager", 160, "Quimper");
 		Potager potager3 = new Potager("Chez Josiane", "MonPotagerSexy", 100, "Nantes");
-		
+
 		// Data field
 		Field field1 = new Field(10, GroundType.DIRT, ExpositionType.SUN);
 		Field field2 = new Field(10, GroundType.STONE, ExpositionType.SHADOW);
@@ -42,7 +45,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		Field field5 = new Field(10, GroundType.STONE, ExpositionType.HALF_SHADE);
 		Field field6 = new Field(10, GroundType.DIRT, ExpositionType.HALF_SHADE);
 		Field field7 = new Field(10, GroundType.CLAY, ExpositionType.SHADOW);
-		
+
 		// garden to field
 		potager1.addField(field1);
 		potager1.addField(field2);
@@ -51,7 +54,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		potager2.addField(field5);
 		potager3.addField(field6);
 		potager3.addField(field7);
-		
+
 		// Data plant
 		Plant plant1 = new Plant("Carottes", PlantType.VEGETABLE, "Orange", 3);
 		Plant plant2 = new Plant("Salade", PlantType.VEGETABLE, "Ice berg", 3);
@@ -59,7 +62,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		Plant plant4 = new Plant("Patates", PlantType.ROOT, "Nouvelles", 3);
 		Plant plant5 = new Plant("Radis", PlantType.VEGETABLE, "Noir", 3);
 		Plant plant6 = new Plant("Gimgembre", PlantType.ROOT, "Aphrodisiaque", 3);
-		
+
 		// Data implantation
 		Implantation implantation1 = new Implantation(plant1, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
 		Implantation implantation2 = new Implantation(plant1, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
@@ -73,7 +76,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		Implantation implantation10 = new Implantation(plant5, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
 		Implantation implantation11 = new Implantation(plant6, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
 		Implantation implantation12 = new Implantation(plant6, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
-		
+
 		// field to implantation
 		field1.addImplentation(implantation1);
 		field1.addImplentation(implantation2);
@@ -87,11 +90,15 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		field6.addImplentation(implantation10);
 		field7.addImplentation(implantation11);
 		field7.addImplentation(implantation12);
-		
+
 		// insert in db of this data
-		manager.insertPotager(potager1);
-		manager.insertPotager(potager2);
-		manager.insertPotager(potager3);
+		try {
+			manager.insertPotager(potager1);
+			manager.insertPotager(potager2);
+			manager.insertPotager(potager3);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		System.out.println(manager.infoPotager(potager3));
 	}
 

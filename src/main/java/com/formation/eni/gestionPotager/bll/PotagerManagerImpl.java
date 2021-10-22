@@ -99,7 +99,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void insertField(Field field) throws BLLexception {
 		try {
-			// TODO verify the field object
+			fieldValidator(field);
 			daoPotager.save(field.getPotager());
 			field.getImplantations().forEach(implentation -> {
 				daoPlant.save(implentation.getPlant());
@@ -115,7 +115,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void updateField(Field field) throws BLLexception {
 		try {
-			// TODO verify the field object
+			fieldValidator(field);
 			daoPotager.save(field.getPotager());
 			field.getImplantations().forEach(implentation -> {
 				daoPlant.save(implentation.getPlant());
@@ -369,8 +369,31 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param activity
 	 * @return
 	 */
-	private boolean activityValidator(Activity activity) throws BLLexception {
-		return true;
+	private void activityValidator(Activity activity) throws BLLexception {
+		StringBuilder error = new StringBuilder("");
+		
+		if(activity.getDate().isBefore(LocalDate.now())) {
+			error.append("The date is incorect");
+		}
+		if(activity.getDate() == null) {
+			error.append("The date is incorect");
+		}
+		if(activity.getEvenement() == null || "".equals(activity.getEvenement())) {
+			error.append("The event is incorect");
+		}
+		if(activity.getLieu() == null) {
+			error.append("The potager is incorect");
+		} else {
+			try {
+				potagerValidator(activity.getLieu());
+			} catch (Exception e) {
+				error.append(e.getMessage());
+			}
+		}
+		
+		if (error.length() != 0) {
+			throw new BLLexception(error.toString());
+		}
 	}
 
 	/**
@@ -402,7 +425,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			}
 		});
 		
-		if (!"".equals(error)) {
+		if (error.length() != 0) {
 			throw new BLLexception(error.toString());
 		}
 	}
@@ -413,9 +436,35 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param implantation
 	 * @return
 	 */
-	private boolean implantationValidator(Implantation implantation) throws BLLexception {
-
-		return true;
+	private void implantationValidator(Implantation implantation) throws BLLexception {
+		StringBuilder error = new StringBuilder("");
+		
+		if(implantation.getEstablishment() == null) {
+			error.append("The establishement is incorect");
+		}
+		if(implantation.getField() == null) {
+			error.append("The field is incorect");
+		}
+		if(implantation.getHarvest() == null) {
+			error.append("The harvest is incorect");
+		}
+		if(implantation.getNbPlant() <= 0) {
+			error.append("The number of plant is incorect");
+		}
+		if(implantation.getPlant() == null) {
+			error.append("The plant is incorect");
+		}
+		else {
+			try {
+				plantValidator(implantation.getPlant());
+			} catch (Exception e) {
+				error.append(e.getMessage());
+			}
+		}
+		
+		if (error.length() != 0) {
+			throw new BLLexception(error.toString());
+		}
 	}
 
 	/**
@@ -424,13 +473,25 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param plant
 	 * @return
 	 */
-	private boolean plantValidator(Plant plant) throws BLLexception {
-		StringBuilder erreur = new StringBuilder("");
-		// TODO todo tout
+	private void plantValidator(Plant plant) throws BLLexception {
+		StringBuilder error = new StringBuilder();
+
 		if (plant.getName() == null || "".equals(plant.getName())) {
-	        erreur.append("Pas de nom\n");
+	        error.append("The name is incorect");
 	    }
-		return true;
+		if(plant.getPlantType() == null) {
+			error.append("The plant type is incorect");
+		}
+		if(plant.getVariety() == null || "".equals(plant.getVariety())) {
+			error.append("The variety is incorect");
+		}
+		if(plant.getAera() == null || plant.getAera() <= 0) {
+			error.append("The aera is incorect");
+		}
+
+		if (error.length() != 0) {
+			throw new BLLexception(error.toString());
+		}
 	}
 
 	/**
@@ -441,6 +502,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 */
 	private void potagerValidator(Potager potager) throws BLLexception {
 		StringBuilder error = new StringBuilder("");
+		
 		if (potager.getNom() == null || "".equals(potager.getNom())) {
 			error.append("The name is incorect");
 		}
@@ -462,7 +524,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			}
 		});
 
-		if (!"".equals(error)) {
+		if (error.length() != 0) {
 			throw new BLLexception(error.toString());
 		}
 	}
