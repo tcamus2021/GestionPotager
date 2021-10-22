@@ -263,15 +263,14 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param potager
 	 * @return
 	 */
-	private boolean sizeOfFieldsIsLowerThanPotager(Potager potager, Field field) {
-		// TODO
+	private boolean sizeOfFieldsLowerThanPotager(Potager potager, Field field) {
 		Integer sumOfFields = 0;
 		for (Field carre : potager.getFields()) {
 			sumOfFields += carre.getAera();
 		}
 		if(sumOfFields 
-				+ field.getAera()*METER_COEFF 
-				> potager.getAera()*METER_COEFF ) {
+				+ METER_COEFF*field.getAera() 
+				> METER_COEFF*potager.getAera() ) {
 			return false;
 		}
 		return true;
@@ -286,11 +285,11 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean sizeOfPlantsLowerThanField(Field field, Implantation implantation) {
 		Integer sumOfPlants = 0;
 		for (Implantation implant : field.getImplantations()) {
-			sumOfPlants += implant.getPlant().getAera();
+			sumOfPlants += implant.getPlant().getAera()*implant.getNbPlant();
 		}
 		if(sumOfPlants 
-				+ implantation.getPlant().getAera()*CENTIMETER_COEFF 
-				> field.getAera()*METER_COEFF ) {
+				+ CENTIMETER_COEFF*implantation.getPlant().getAera()*implantation.getNbPlant() 
+				> METER_COEFF*field.getAera() ) {
 			return false;
 		}
 		return true;

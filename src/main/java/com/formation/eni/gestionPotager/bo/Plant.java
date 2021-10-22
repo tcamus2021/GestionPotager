@@ -23,7 +23,7 @@ public class Plant {
 	private String name;
 	private PlantType plantType;
 	private String variety;
-	private Integer aera;
+	private Integer aera; // (cm²)
 
 	/**
 	 * Constructor without id
@@ -31,7 +31,7 @@ public class Plant {
 	 * @param name
 	 * @param plantType
 	 * @param variety
-	 * @param aera (cm²)
+	 * @param aera 
 	 */
 	public Plant(String name, PlantType plantType, String variety, Integer aera) {
 		super();
