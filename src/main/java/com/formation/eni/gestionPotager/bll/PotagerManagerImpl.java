@@ -23,6 +23,8 @@ import com.formation.eni.gestionPotager.dal.PotagerDAO;
 @Service
 public class PotagerManagerImpl implements PotagerManager {
 	private static Integer PLANTS_LIMIT = 3;
+	private static Integer METER_COEFF = 10000; // for m²
+	private static Integer CENTIMETER_COEFF = 1; // for cm²
 
 	@Autowired
 	private ActivityDAO daoActivity;
