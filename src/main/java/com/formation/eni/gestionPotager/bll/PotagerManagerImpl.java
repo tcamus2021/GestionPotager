@@ -348,7 +348,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param activity
 	 * @return
 	 */
-	private boolean activityValidator(Activity activity) {
+	private boolean activityValidator(Activity activity) throws BLLexception {
 
 		return true;
 	}
@@ -359,7 +359,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param field
 	 * @return
 	 */
-	private boolean fieldValidator(Field field) {
+	private boolean fieldValidator(Field field) throws BLLexception {
 
 		return true;
 	}
@@ -370,7 +370,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param implantation
 	 * @return
 	 */
-	private boolean implantationValidator(Implantation implantation) {
+	private boolean implantationValidator(Implantation implantation) throws BLLexception {
 
 		return true;
 	}
@@ -381,7 +381,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param plant
 	 * @return
 	 */
-	private boolean plantValidator(Plant plant) {
+	private boolean plantValidator(Plant plant) throws BLLexception {
 
 		return true;
 	}
@@ -392,7 +392,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param potager
 	 * @return
 	 */
-	private boolean potagerValidator(Potager potager) {
+	private boolean potagerValidator(Potager potager) throws BLLexception {
 
 		return true;
 	}
