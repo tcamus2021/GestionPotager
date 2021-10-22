@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.formation.eni.gestionPotager.bll.BLLexception;
 import com.formation.eni.gestionPotager.bll.PotagerManager;
 import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.ExpositionType;
@@ -96,10 +97,11 @@ public class GestionPotagerApplication implements CommandLineRunner {
 			manager.insertPotager(potager1);
 			manager.insertPotager(potager2);
 			manager.insertPotager(potager3);
+			manager.deletePotager(potager3);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(manager.infoPotager(potager3));
+
 	}
 
 }

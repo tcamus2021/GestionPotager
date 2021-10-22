@@ -3,6 +3,7 @@ package com.formation.eni.gestionPotager.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Field {
 	private Integer idField;
 	@ManyToOne
 	private Potager potager;
-	private Integer aera; // (m²)
+	private Integer aera; // (mï¿½)
 	private GroundType groundType;
 	private ExpositionType expositionType;
 	@OneToMany(mappedBy = "field")

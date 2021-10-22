@@ -2,6 +2,7 @@ package com.formation.eni.gestionPotager.bo;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

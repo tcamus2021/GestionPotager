@@ -80,7 +80,12 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void deletePotager(Potager potager) throws BLLexception {
-		// TODO delete in cascade
+		potager.getFields().forEach(field -> {
+			field.getImplantations().forEach(implantation -> {
+				daoImplantation.delete(implantation);
+			});
+			daoField.delete(field);
+		});
 		int sizeBeforeAction = (int) daoPotager.count();
 		daoPotager.delete(potager);
 		int sizeAfterAction = (int) daoPotager.count();
@@ -130,7 +135,9 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void deleteField(Field field) throws BLLexception {
-		// TODO delete in cascade
+		field.getImplantations().forEach(implantation -> {
+			daoImplantation.delete(implantation);
+		});
 		int sizeBeforeAction = (int) daoField.count();
 		daoField.delete(field);
 		int sizeAfterAction = (int) daoField.count();
