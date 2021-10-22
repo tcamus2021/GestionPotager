@@ -41,8 +41,7 @@ public class Field {
 	 * @param groundType
 	 * @param expositionType
 	 */
-	public Field(Potager potager, Integer aera, GroundType groundType, ExpositionType expositionType) {
-		this.potager = potager;
+	public Field(Integer aera, GroundType groundType, ExpositionType expositionType) {
 		this.aera = aera;
 		this.groundType = groundType;
 		this.expositionType = expositionType;

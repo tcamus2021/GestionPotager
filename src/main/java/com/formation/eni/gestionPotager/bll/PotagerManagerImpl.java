@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.Field;
+import com.formation.eni.gestionPotager.bo.Implentation;
 import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.Potager;
 import com.formation.eni.gestionPotager.dal.ActivityDAO;
@@ -44,6 +45,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			// TODO Verify if the garden is correct
 			potager.getFields().forEach(field -> {
 				((Field) field).getImplentations().forEach(implentation -> {
+					daoPlant.save(implentation.getPlant());
 					daoImplentation.save(implentation);
 				});
 				daoField.save(field);
@@ -61,6 +63,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			// TODO Verify if the garden is correct
 			potager.getFields().forEach(field -> {
 				((Field) field).getImplentations().forEach(implentation -> {
+					daoPlant.save(implentation.getPlant());
 					daoImplentation.save(implentation);
 				});
 				daoField.save(field);
@@ -91,22 +94,44 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void insertField(Field field) throws BLLexception {
-		// TODO Auto-generated method stub
-
+		try {
+			// TODO verify the field object
+			daoPotager.save(field.getPotager());
+			field.getImplentations().forEach(implentation -> {
+				daoPlant.save(implentation.getPlant());
+				daoImplentation.save(implentation);
+			});
+			daoField.save(field);
+		} catch (Exception e) {
+			throw new BLLexception(e.getMessage());
+		}
 	}
 
 	@Override
 	@Transactional
 	public void updateField(Field field) throws BLLexception {
-		// TODO Auto-generated method stub
-
+		try {
+			// TODO verify the field object
+			daoPotager.save(field.getPotager());
+			field.getImplentations().forEach(implentation -> {
+				daoPlant.save(implentation.getPlant());
+				daoImplentation.save(implentation);
+			});
+			daoField.save(field);
+		} catch (Exception e) {
+			throw new BLLexception(e.getMessage());
+		}
 	}
 
 	@Override
 	@Transactional
 	public void deleteField(Field field) throws BLLexception {
-		// TODO Auto-generated method stub
-
+		int sizeBeforeAction = (int) daoField.count();
+		daoField.delete(field);
+		int sizeAfterAction = (int) daoField.count();
+		if (sizeBeforeAction == sizeAfterAction) {
+			throw new BLLexception("BLL/deleteField(): There isn't this field in the DataBase");
+		}
 	}
 
 	@Override
@@ -245,7 +270,8 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean scheduledDateAfterToday(Activity activity) {
 		if (activity.getDate().isBefore(LocalDate.now())) {
 			return false;
-		} else return true;
+		} else
+			return true;
 	}
 
 	/**

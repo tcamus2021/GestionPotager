@@ -31,10 +31,12 @@ public class GestionPotagerApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		Potager potager = new Potager("c'est ici ! l� !", "SoupeurGreenPotage", 30, "Mon-Sac");
-		Field carre = new Field(potager, 5, GroundType.DIRT, ExpositionType.SUN);
+		Field carre = new Field(5, GroundType.DIRT, ExpositionType.SUN);
 		potager.addField(carre);
+		
 		Plant plante = new Plant("Choux", PlantType.VEGETABLE, "normaux", 5);
 		Implentation plantePlantee = new Implentation(plante, 4, LocalDate.now(), LocalDate.of(2030, 5, 23), carre);
+		carre.addImplentation(plantePlantee);
 		Activity act = new Activity(LocalDate.of(2022, 5, 23), "La kermes du potager !", potager);
 
 		try {
@@ -42,6 +44,10 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
+		Field carre2 = new Field(3, GroundType.STONE, ExpositionType.SHADOW);
+		potager.addField(carre2);
+		manager.insertField(carre2);
 	}
 
 }
