@@ -12,7 +12,7 @@ import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.ExpositionType;
 import com.formation.eni.gestionPotager.bo.Field;
 import com.formation.eni.gestionPotager.bo.GroundType;
-import com.formation.eni.gestionPotager.bo.Implentation;
+import com.formation.eni.gestionPotager.bo.Implantation;
 import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.PlantType;
 import com.formation.eni.gestionPotager.bo.Potager;
@@ -35,7 +35,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		potager.addField(carre);
 		
 		Plant plante = new Plant("Choux", PlantType.VEGETABLE, "normaux", 5);
-		Implentation plantePlantee = new Implentation(plante, 4, LocalDate.now(), LocalDate.of(2030, 5, 23), carre);
+		Implantation plantePlantee = new Implantation(plante, 4, LocalDate.now(), LocalDate.of(2030, 5, 23), carre);
 		carre.addImplentation(plantePlantee);
 		Activity act = new Activity(LocalDate.of(2022, 5, 23), "La kermes du potager !", potager);
 

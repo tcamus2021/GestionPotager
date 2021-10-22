@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Implentation {
+public class Implantation {
 	@Id
 	@GeneratedValue
 	private Integer idImplentation;
@@ -41,7 +41,7 @@ public class Implentation {
 	 * @param harvest
 	 * @param plant
 	 */
-	public Implentation(Plant plant, Integer nbPlant, LocalDate establishment, LocalDate harvest, Field field) {
+	public Implantation(Plant plant, Integer nbPlant, LocalDate establishment, LocalDate harvest, Field field) {
 		this.plant = plant;
 		this.nbPlant = nbPlant;
 		this.establishment = establishment;

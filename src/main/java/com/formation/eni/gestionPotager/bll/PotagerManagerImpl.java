@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.Field;
-import com.formation.eni.gestionPotager.bo.Implentation;
+import com.formation.eni.gestionPotager.bo.Implantation;
 import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.Potager;
 import com.formation.eni.gestionPotager.dal.ActivityDAO;
@@ -44,7 +44,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		try {
 			// TODO Verify if the garden is correct
 			potager.getFields().forEach(field -> {
-				((Field) field).getImplentations().forEach(implentation -> {
+				((Field) field).getImplantations().forEach(implentation -> {
 					daoPlant.save(implentation.getPlant());
 					daoImplentation.save(implentation);
 				});
@@ -62,7 +62,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		try {
 			// TODO Verify if the garden is correct
 			potager.getFields().forEach(field -> {
-				((Field) field).getImplentations().forEach(implentation -> {
+				((Field) field).getImplantations().forEach(implentation -> {
 					daoPlant.save(implentation.getPlant());
 					daoImplentation.save(implentation);
 				});
@@ -97,7 +97,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		try {
 			// TODO verify the field object
 			daoPotager.save(field.getPotager());
-			field.getImplentations().forEach(implentation -> {
+			field.getImplantations().forEach(implentation -> {
 				daoPlant.save(implentation.getPlant());
 				daoImplentation.save(implentation);
 			});
@@ -113,7 +113,7 @@ public class PotagerManagerImpl implements PotagerManager {
 		try {
 			// TODO verify the field object
 			daoPotager.save(field.getPotager());
-			field.getImplentations().forEach(implentation -> {
+			field.getImplantations().forEach(implentation -> {
 				daoPlant.save(implentation.getPlant());
 				daoImplentation.save(implentation);
 			});
@@ -171,10 +171,10 @@ public class PotagerManagerImpl implements PotagerManager {
 
 	@Override
 	@Transactional
-	public void addImplentationInField(Field field, Implentation implentation) throws BLLexception {
-		if(!limitOfPlantsNotReached(field, implentation)) {
+	public void addImplentationInField(Field field, Implantation implantation) throws BLLexception {
+		if(!limitOfPlantsNotReached(field, implantation)) {
 			throw new BLLexception("BLL/addPlantInField(): IMPOSSIBLE limit of different Plant already reached for this Field");
-		}if(!sizeOfPlantsLowerThanField(field, implentation)) {
+		}if(!sizeOfPlantsLowerThanField(field, implantation)) {
 			throw new BLLexception("BLL/addPlantInField(): IMPOSSIBLE this Plant have not enough place in this Field");
 		}
 		
@@ -249,7 +249,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param field
 	 * @return
 	 */
-	private boolean sizeOfPlantsLowerThanField(Field field, Implentation implentation) {
+	private boolean sizeOfPlantsLowerThanField(Field field, Implantation implantation) {
 		// TODO
 		return true;
 	}
@@ -286,7 +286,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @param field
 	 * @return
 	 */
-	private boolean limitOfPlantsNotReached(Field field, Implentation implentationt) {
+	private boolean limitOfPlantsNotReached(Field field, Implantation implentationt) {
 		// TODO
 		return true;
 	}

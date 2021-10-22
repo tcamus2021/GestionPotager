@@ -31,7 +31,7 @@ public class Field {
 	private GroundType groundType;
 	private ExpositionType expositionType;
 	@OneToMany(mappedBy = "field")
-	private List<Implentation> implentations = new ArrayList<Implentation>();
+	private List<Implantation> implantations = new ArrayList<Implantation>();
 
 	/**
 	 * Constructore without id and list
@@ -50,11 +50,11 @@ public class Field {
 	/**
 	 * To add an implementation in the field
 	 * 
-	 * @param implentation
+	 * @param implantation
 	 */
-	public void addImplentation(Implentation implentation) {
-		implentation.setField(this);
-		this.implentations.add(implentation);
+	public void addImplentation(Implantation implantation) {
+		implantation.setField(this);
+		this.implantations.add(implantation);
 	}
 
 }
