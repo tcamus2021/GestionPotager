@@ -16,7 +16,7 @@ import com.formation.eni.gestionPotager.bo.Plant;
 import com.formation.eni.gestionPotager.bo.Potager;
 import com.formation.eni.gestionPotager.dal.ActivityDAO;
 import com.formation.eni.gestionPotager.dal.FieldDAO;
-import com.formation.eni.gestionPotager.dal.ImplentationDAO;
+import com.formation.eni.gestionPotager.dal.ImplantationDAO;
 import com.formation.eni.gestionPotager.dal.PlantDAO;
 import com.formation.eni.gestionPotager.dal.PotagerDAO;
 
@@ -39,7 +39,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	private PlantDAO daoPlant;
 
 	@Autowired
-	private ImplentationDAO daoImplentation;
+	private ImplantationDAO daoImplantation;
 
 	@Override
 	@Transactional
@@ -49,7 +49,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			potager.getFields().forEach(field -> {
 				((Field) field).getImplantations().forEach(implentation -> {
 					daoPlant.save(implentation.getPlant());
-					daoImplentation.save(implentation);
+					daoImplantation.save(implentation);
 				});
 				daoField.save(field);
 			});
@@ -67,7 +67,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			potager.getFields().forEach(field -> {
 				((Field) field).getImplantations().forEach(implentation -> {
 					daoPlant.save(implentation.getPlant());
-					daoImplentation.save(implentation);
+					daoImplantation.save(implentation);
 				});
 				daoField.save(field);
 			});
@@ -103,7 +103,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			daoPotager.save(field.getPotager());
 			field.getImplantations().forEach(implentation -> {
 				daoPlant.save(implentation.getPlant());
-				daoImplentation.save(implentation);
+				daoImplantation.save(implentation);
 			});
 			daoField.save(field);
 		} catch (Exception e) {
@@ -119,7 +119,7 @@ public class PotagerManagerImpl implements PotagerManager {
 			daoPotager.save(field.getPotager());
 			field.getImplantations().forEach(implentation -> {
 				daoPlant.save(implentation.getPlant());
-				daoImplentation.save(implentation);
+				daoImplantation.save(implentation);
 			});
 			daoField.save(field);
 		} catch (Exception e) {
@@ -241,13 +241,30 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public String getLocationPlantWithName(String name) throws BLLexception {
 		// TODO Auto-generated method stub
-		return null;
+		// => detail de la plant 
+		// 	+ Lister chaque occurence d'une plant 
+		// 	+ donner nom du Potager + info du Carre 
+		
+		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name);
+		StringBuffer sb = new StringBuffer();
+		for (Implantation implantation : list) {
+			
+		}
+		
+			sb.append("*******");
+		
+		
+		return sb.toString();
+	
 	}
 
 	@Override
 	@Transactional
 	public String getLocationPlantWithNameAndVariety(String name, String variety) throws BLLexception {
 		// TODO Auto-generated method stub
+		// => detail de la plant 
+		// 	+ Lister chaque occurence d'une plant 
+		// 	+ donner nom du Potager + info du Carre 
 		return null;
 	}
 
@@ -255,7 +272,11 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void removePlantInPotager(Potager potager, Plant plant) throws BLLexception {
 		// TODO Auto-generated method stub
-
+		// pour un potager donné
+		// 	- dans chaque field
+		// 	- dans chaque implantation
+		// => remove chaque occurence d'une plant
+		
 	}
 
 	/**
