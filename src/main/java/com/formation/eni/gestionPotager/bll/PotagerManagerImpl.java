@@ -1,6 +1,7 @@
 package com.formation.eni.gestionPotager.bll;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -287,7 +288,18 @@ public class PotagerManagerImpl implements PotagerManager {
 	 * @return
 	 */
 	private boolean limitOfPlantsNotReached(Field field, Implantation implantation) {
-		if (field.getImplentations())
-		return true;
+		List<Plant> lstPlant = new ArrayList<Plant>();
+		for (Implantation implant : field.getImplantations()) {
+			if(!lstPlant.contains(implant.getPlant())) {
+				lstPlant.add(implant.getPlant());
+			}
+		}
+		if(lstPlant.contains(implantation.getPlant())) {
+			return true;
+		}
+		if(lstPlant.size() > PLANTS_LIMIT) {
+			return true;
+		}
+		return false;
 	}
 }
