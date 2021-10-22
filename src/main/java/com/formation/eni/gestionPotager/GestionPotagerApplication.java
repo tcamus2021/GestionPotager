@@ -92,6 +92,7 @@ public class GestionPotagerApplication implements CommandLineRunner {
 		manager.insertPotager(potager1);
 		manager.insertPotager(potager2);
 		manager.insertPotager(potager3);
+		System.out.println(manager.infoPotager(potager3));
 	}
 
 }
