@@ -37,9 +37,6 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Autowired
 	private ImplentationDAO daoImplentation;
 
-	@Autowired
-	private PlantDAO daoPlant;
-
 	@Override
 	@Transactional
 	public void insertPotager(Potager potager) throws BLLexception {
@@ -246,8 +243,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	private boolean scheduledDateAfterToday(Activity activity) {
 		if(activity.getDate().isBefore(LocalDate.now())) {
 			return false;
-		}
-		return true;
+		} else return true;
 	}
 
 	/**
