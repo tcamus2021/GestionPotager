@@ -29,25 +29,69 @@ public class GestionPotagerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		Potager potager = new Potager("c'est ici ! l� !", "SoupeurGreenPotage", 30, "Mon-Sac");
-		Field carre = new Field(5, GroundType.DIRT, ExpositionType.SUN);
-		potager.addField(carre);
+		// Data garden
+		Potager potager1 = new Potager("Chez Rene", "MonPotagerIncroyable", 30, "Penmarc'h");
+		Potager potager2 = new Potager("Chez Thierry", "MonIgnoblePotager", 160, "Quimper");
+		Potager potager3 = new Potager("Chez Josiane", "MonPotagerSexy", 100, "Nantes");
 		
-		Plant plante = new Plant("Choux", PlantType.VEGETABLE, "normaux", 5);
-		Implantation plantePlantee = new Implantation(plante, 4, LocalDate.now(), LocalDate.of(2030, 5, 23), carre);
-		carre.addImplentation(plantePlantee);
-		Activity act = new Activity(LocalDate.of(2022, 5, 23), "La kermes du potager !", potager);
-
-		try {
-			manager.insertPotager(potager);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		// Data field
+		Field field1 = new Field(10, GroundType.DIRT, ExpositionType.SUN);
+		Field field2 = new Field(10, GroundType.STONE, ExpositionType.SHADOW);
+		Field field3 = new Field(10, GroundType.CLAY, ExpositionType.SUN);
+		Field field4 = new Field(10, GroundType.DIRT, ExpositionType.SUN);
+		Field field5 = new Field(10, GroundType.STONE, ExpositionType.HALF_SHADE);
+		Field field6 = new Field(10, GroundType.DIRT, ExpositionType.HALF_SHADE);
+		Field field7 = new Field(10, GroundType.CLAY, ExpositionType.SHADOW);
 		
-		Field carre2 = new Field(3, GroundType.STONE, ExpositionType.SHADOW);
-		potager.addField(carre2);
-		manager.insertField(carre2);
+		// garden to field
+		potager1.addField(field1);
+		potager1.addField(field2);
+		potager1.addField(field3);
+		potager2.addField(field4);
+		potager2.addField(field5);
+		potager3.addField(field6);
+		potager3.addField(field7);
+		
+		// Data plant
+		Plant plant1 = new Plant("Carottes", PlantType.VEGETABLE, "Orange", 3);
+		Plant plant2 = new Plant("Salade", PlantType.VEGETABLE, "Ice berg", 3);
+		Plant plant3 = new Plant("Mangue", PlantType.FRUIT, "Tropical", 3);
+		Plant plant4 = new Plant("Patates", PlantType.ROOT, "Nouvelles", 3);
+		Plant plant5 = new Plant("Radis", PlantType.VEGETABLE, "Noir", 3);
+		Plant plant6 = new Plant("Gimgembre", PlantType.ROOT, "Aphrodisiaque", 3);
+		
+		// Data implantation
+		Implantation implantation1 = new Implantation(plant1, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation2 = new Implantation(plant1, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation3 = new Implantation(plant2, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation4 = new Implantation(plant2, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation5 = new Implantation(plant3, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation6 = new Implantation(plant3, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation7 = new Implantation(plant4, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation8 = new Implantation(plant4, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation9 = new Implantation(plant5, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation10 = new Implantation(plant5, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation11 = new Implantation(plant6, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		Implantation implantation12 = new Implantation(plant6, 2, LocalDate.now(), LocalDate.of(2025, 5, 3));
+		
+		// field to implantation
+		field1.addImplentation(implantation1);
+		field1.addImplentation(implantation2);
+		field2.addImplentation(implantation3);
+		field2.addImplentation(implantation4);
+		field3.addImplentation(implantation5);
+		field3.addImplentation(implantation6);
+		field4.addImplentation(implantation7);
+		field5.addImplentation(implantation8);
+		field6.addImplentation(implantation9);
+		field6.addImplentation(implantation10);
+		field7.addImplentation(implantation11);
+		field7.addImplentation(implantation12);
+		
+		// insert in db of this data
+		manager.insertPotager(potager1);
+		manager.insertPotager(potager2);
+		manager.insertPotager(potager3);
 	}
 
 }
