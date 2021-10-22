@@ -241,30 +241,29 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public String getLocationPlantWithName(String name) throws BLLexception {
 		// TODO Auto-generated method stub
-		// => detail de la plant 
-		// 	+ Lister chaque occurence d'une plant 
-		// 	+ donner nom du Potager + info du Carre 
-		
+		// => detail de la plant
+		// + Lister chaque occurence d'une plant
+		// + donner nom du Potager + info du Carre
+
 		List<Implantation> list = (List<Implantation>) daoImplantation.findAllWherePlantIs(name);
 		StringBuffer sb = new StringBuffer();
 		for (Implantation implantation : list) {
-			
+
 		}
-		
-			sb.append("*******");
-		
-		
+
+		sb.append("*******");
+
 		return sb.toString();
-	
+
 	}
 
 	@Override
 	@Transactional
 	public String getLocationPlantWithNameAndVariety(String name, String variety) throws BLLexception {
 		// TODO Auto-generated method stub
-		// => detail de la plant 
-		// 	+ Lister chaque occurence d'une plant 
-		// 	+ donner nom du Potager + info du Carre 
+		// => detail de la plant
+		// + Lister chaque occurence d'une plant
+		// + donner nom du Potager + info du Carre
 		return null;
 	}
 
@@ -272,11 +271,11 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void removePlantInPotager(Potager potager, Plant plant) throws BLLexception {
 		// TODO Auto-generated method stub
-		// pour un potager donné
-		// 	- dans chaque field
-		// 	- dans chaque implantation
+		// pour un potager donnï¿½
+		// - dans chaque field
+		// - dans chaque implantation
 		// => remove chaque occurence d'une plant
-		
+
 	}
 
 	/**
@@ -371,17 +370,17 @@ public class PotagerManagerImpl implements PotagerManager {
 	 */
 	private void activityValidator(Activity activity) throws BLLexception {
 		StringBuilder error = new StringBuilder("");
-		
-		if(activity.getDate().isBefore(LocalDate.now())) {
+
+		if (activity.getDate().isBefore(LocalDate.now())) {
 			error.append("The date is incorect");
 		}
-		if(activity.getDate() == null) {
+		if (activity.getDate() == null) {
 			error.append("The date is incorect");
 		}
-		if(activity.getEvenement() == null || "".equals(activity.getEvenement())) {
+		if (activity.getEvenement() == null || "".equals(activity.getEvenement())) {
 			error.append("The event is incorect");
 		}
-		if(activity.getLieu() == null) {
+		if (activity.getLieu() == null) {
 			error.append("The potager is incorect");
 		} else {
 			try {
@@ -390,7 +389,7 @@ public class PotagerManagerImpl implements PotagerManager {
 				error.append(e.getMessage());
 			}
 		}
-		
+
 		if (error.length() != 0) {
 			throw new BLLexception(error.toString());
 		}
@@ -404,19 +403,19 @@ public class PotagerManagerImpl implements PotagerManager {
 	 */
 	private void fieldValidator(Field field) throws BLLexception {
 		StringBuilder error = new StringBuilder("");
-		if(field.getGroundType() == null) {
+		if (field.getGroundType() == null) {
 			error.append("The ground type is incorect");
 		}
-		if(field.getPotager() == null) {
+		if (field.getPotager() == null) {
 			error.append("The potager is incorect");
 		}
-		if(field.getExpositionType() == null) {
+		if (field.getExpositionType() == null) {
 			error.append("The exposition type is incorect");
 		}
-		if(field.getAera() <= 0 || field.getAera() == null) {
+		if (field.getAera() <= 0 || field.getAera() == null) {
 			error.append("The area is incorect");
 		}
-		
+
 		field.getImplantations().forEach(implantation -> {
 			try {
 				implantationValidator(implantation);
@@ -424,7 +423,7 @@ public class PotagerManagerImpl implements PotagerManager {
 				error.append(e.getMessage());
 			}
 		});
-		
+
 		if (error.length() != 0) {
 			throw new BLLexception(error.toString());
 		}
@@ -438,30 +437,29 @@ public class PotagerManagerImpl implements PotagerManager {
 	 */
 	private void implantationValidator(Implantation implantation) throws BLLexception {
 		StringBuilder error = new StringBuilder("");
-		
-		if(implantation.getEstablishment() == null) {
+
+		if (implantation.getEstablishment() == null) {
 			error.append("The establishement is incorect");
 		}
-		if(implantation.getField() == null) {
+		if (implantation.getField() == null) {
 			error.append("The field is incorect");
 		}
-		if(implantation.getHarvest() == null) {
+		if (implantation.getHarvest() == null) {
 			error.append("The harvest is incorect");
 		}
-		if(implantation.getNbPlant() <= 0) {
+		if (implantation.getNbPlant() <= 0) {
 			error.append("The number of plant is incorect");
 		}
-		if(implantation.getPlant() == null) {
+		if (implantation.getPlant() == null) {
 			error.append("The plant is incorect");
-		}
-		else {
+		} else {
 			try {
 				plantValidator(implantation.getPlant());
 			} catch (Exception e) {
 				error.append(e.getMessage());
 			}
 		}
-		
+
 		if (error.length() != 0) {
 			throw new BLLexception(error.toString());
 		}
@@ -477,15 +475,15 @@ public class PotagerManagerImpl implements PotagerManager {
 		StringBuilder error = new StringBuilder();
 
 		if (plant.getName() == null || "".equals(plant.getName())) {
-	        error.append("The name is incorect");
-	    }
-		if(plant.getPlantType() == null) {
+			error.append("The name is incorect");
+		}
+		if (plant.getPlantType() == null) {
 			error.append("The plant type is incorect");
 		}
-		if(plant.getVariety() == null || "".equals(plant.getVariety())) {
+		if (plant.getVariety() == null || "".equals(plant.getVariety())) {
 			error.append("The variety is incorect");
 		}
-		if(plant.getAera() == null || plant.getAera() <= 0) {
+		if (plant.getAera() == null || plant.getAera() <= 0) {
 			error.append("The aera is incorect");
 		}
 
@@ -502,7 +500,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	 */
 	private void potagerValidator(Potager potager) throws BLLexception {
 		StringBuilder error = new StringBuilder("");
-		
+
 		if (potager.getNom() == null || "".equals(potager.getNom())) {
 			error.append("The name is incorect");
 		}
