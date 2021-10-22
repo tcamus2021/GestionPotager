@@ -28,7 +28,7 @@ public class Potager implements Lieu {
 	private String nom;
 	private Integer aera;
 	private String city;
-	@OneToMany
+	@OneToMany(mappedBy = "potager")
 	private List<Field> fields = new ArrayList<Field>();
 
 	/**
