@@ -12,9 +12,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import com.formation.eni.gestionPotager.bll.BLLexception;
 import com.formation.eni.gestionPotager.bll.PotagerManager;
-import com.formation.eni.gestionPotager.bo.Activity;
 import com.formation.eni.gestionPotager.bo.ExpositionType;
 import com.formation.eni.gestionPotager.bo.Field;
 import com.formation.eni.gestionPotager.bo.GroundType;

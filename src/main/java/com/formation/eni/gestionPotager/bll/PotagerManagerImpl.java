@@ -537,4 +537,9 @@ public class PotagerManagerImpl implements PotagerManager {
 			throw new BLLexception(error.toString());
 		}
 	}
+
+	@Override
+	public Potager getPotagerById(Integer id) {
+		return daoPotager.findById(id).orElse(null);
+	}
 }

@@ -3,12 +3,14 @@ package com.formation.eni.gestionPotager.bo;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,11 +29,13 @@ public class Field {
 	@GeneratedValue
 	private Integer idField;
 	@ManyToOne
+	@JsonBackReference
 	private Potager potager;
 	private Integer aera; // (square meter)
 	private GroundType groundType;
 	private ExpositionType expositionType;
 	@OneToMany(mappedBy = "field")
+	@JsonManagedReference
 	private List<Implantation> implantations = new ArrayList<Implantation>();
 
 	/**

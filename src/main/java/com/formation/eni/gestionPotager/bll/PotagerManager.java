@@ -166,4 +166,12 @@ public interface PotagerManager {
 	 * @throws BLLexception
 	 */
 	public void removePlantInPotager(Potager potager, Plant plant) throws BLLexception;
+
+	/**
+	 * get Potager object by Id
+	 * 
+	 * @param id
+	 * @throws BLLexception
+	 */
+	public Potager getPotagerById(Integer id);
 }

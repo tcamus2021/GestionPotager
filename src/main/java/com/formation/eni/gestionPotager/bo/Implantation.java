@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,6 +33,7 @@ public class Implantation {
 	private LocalDate establishment;
 	private LocalDate harvest;
 	@ManyToOne
+	@JsonBackReference
 	private Field field;
 
 	/**
