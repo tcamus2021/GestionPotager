@@ -1,2 +1,11 @@
 /main/
 /test/
+/.gitignore
+/.gradle/
+/HELP.md
+/build.gradle
+/gradle/
+/gradlew
+/gradlew.bat
+/settings.gradle
+/src/
