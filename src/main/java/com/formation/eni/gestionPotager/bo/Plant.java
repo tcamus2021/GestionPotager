@@ -1,8 +1,15 @@
 package com.formation.eni.gestionPotager.bo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +23,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class,
+		property = "idPlant")
 public class Plant {
 	@Id
 	@GeneratedValue
@@ -24,6 +34,9 @@ public class Plant {
 	private PlantType plantType;
 	private String variety;
 	private Integer aera; // (square centimeter)
+	@ManyToMany
+	@JsonManagedReference
+	private List<Plant> associations;
 
 	/**
 	 * Constructor without id
@@ -41,4 +54,8 @@ public class Plant {
 		this.aera = aera;
 	}
 
+	public void associate(Plant plant) {
+		this.associations.add(plant);
+		plant.associations.add(this);
+	}
 }

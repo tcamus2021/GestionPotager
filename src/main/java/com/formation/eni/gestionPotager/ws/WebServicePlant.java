@@ -96,4 +96,45 @@ public class WebServicePlant {
 			return null;
 		}
 	}
+	
+	/**
+	 * Create associations whith two named Plants
+	 * 
+	 * @param first == name of the 1st Plant
+	 * @param second  == name of the 2nd Plant
+	 * @return == informations message 
+	 */
+	@GetMapping("/asso/{first}/{second}")
+	public String associate(@PathVariable("first") String first, @PathVariable("second") String second) {
+		Plant one = manager.getPlantByName(first);
+		Plant two = manager.getPlantByName(second);
+		if(	 one!= null && two != null) {
+			one.associate(two);
+			try {
+				manager.updatePlant(one);
+			} catch (BLLexception e) {
+				e.printStackTrace();
+				return "Fail can't save first Plant!";
+			}
+			try {
+				manager.updatePlant(two);
+			} catch (BLLexception e) {
+				e.printStackTrace();
+				return "Fail can't save second Plant!";
+			}
+			return "association Ok !";
+		}else {
+			return "Fail to associate!";
+		}
+	}
+	
+	/**
+	 * Get all Plants with associations
+	 * 
+	 * @return List of all Plants with an association
+	 */
+	@GetMapping("/asso")
+	public List<Plant> showAssociations() {
+		return manager.getAllAssociations();
+	}
 }

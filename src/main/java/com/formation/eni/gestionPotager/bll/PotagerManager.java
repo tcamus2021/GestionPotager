@@ -174,4 +174,20 @@ public interface PotagerManager {
 	 * @throws BLLexception
 	 */
 	public Potager getPotagerById(Integer id);
+
+	/**
+	 * get Plant object by name
+	 * 
+	 * @param id
+	 * @throws BLLexception
+	 */
+	public Plant getPlantByName(String first);
+
+	/**
+	 * get List of associations
+	 * 
+	 * @param id
+	 * @throws BLLexception
+	 */
+	public List<Plant> getAllAssociations();
 }

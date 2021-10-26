@@ -165,8 +165,8 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void updatePlant(Plant plant) throws BLLexception {
-		if (!plantNotExist(plant.getName(), plant.getVariety())) {
-			throw new BLLexception("BLL/insertPlant(): IMPOSSIBLE, cette plante existe deja");
+		if (plantNotExist(plant.getName(), plant.getVariety())) {
+			throw new BLLexception("BLL/updatePlant(): IMPOSSIBLE, cette plante n'existe pas encore");
 		}
 		daoPlant.save(plant);
 	}
@@ -541,5 +541,15 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	public Potager getPotagerById(Integer id) {
 		return daoPotager.findById(id).orElse(null);
+	}
+
+	@Override
+	public Plant getPlantByName(String first) {
+		return daoPlant.findByName(first);
+	}
+
+	@Override
+	public List<Plant> getAllAssociations() {
+		return daoPlant.findAllWhereAssociations();
 	}
 }
