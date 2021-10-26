@@ -19,7 +19,6 @@ import com.formation.eni.gestionPotager.dal.FieldDAO;
 import com.formation.eni.gestionPotager.dal.ImplantationDAO;
 import com.formation.eni.gestionPotager.dal.PlantDAO;
 import com.formation.eni.gestionPotager.dal.PotagerDAO;
-import com.formation.eni.gestionPotager.ws.WSexception;
 
 @Service
 public class PotagerManagerImpl implements PotagerManager {
