@@ -19,6 +19,7 @@ import com.formation.eni.gestionPotager.dal.FieldDAO;
 import com.formation.eni.gestionPotager.dal.ImplantationDAO;
 import com.formation.eni.gestionPotager.dal.PlantDAO;
 import com.formation.eni.gestionPotager.dal.PotagerDAO;
+import com.formation.eni.gestionPotager.ws.WSexception;
 
 @Service
 public class PotagerManagerImpl implements PotagerManager {
@@ -165,10 +166,19 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void updatePlant(Plant plant) throws BLLexception {
-		if (plantNotExist(plant.getName(), plant.getVariety())) {
-			throw new BLLexception("BLL/updatePlant(): IMPOSSIBLE, cette plante n'existe pas encore");
+		if (!plantNotExist(plant.getName(), plant.getVariety())) {
+			throw new BLLexception("BLL/updatePlant(): IMPOSSIBLE, cette plante existe pas déjà");
 		}
-		daoPlant.save(plant);
+		boolean find = false;
+		for (Plant plantFE : daoPlant.findAll()) {
+			if(plantFE.getIdPlant() == plant.getIdPlant()) {
+				find = true;
+			}
+		}
+		if(find)
+			daoPlant.save(plant);
+		else
+			throw new BLLexception("Plant does not exist");
 	}
 
 	@Override

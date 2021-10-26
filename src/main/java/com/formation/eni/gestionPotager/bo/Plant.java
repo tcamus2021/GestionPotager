@@ -35,7 +35,7 @@ public class Plant {
 	private String variety;
 	private Integer aera; // (square centimeter)
 	@ManyToMany
-	@JsonManagedReference
+//	@JsonManagedReference
 	private List<Plant> associations;
 
 	/**

@@ -3,6 +3,7 @@ package com.formation.eni.gestionPotager.ws;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +18,11 @@ public class WebServicePotager {
 	PotagerManager manager;
 
 	@GetMapping("ws/potager")
-	public List<Potager> getAllPotager() {
+	public List<Potager> getAllPotager() throws WSexception {
 		try {
 			return manager.getAllPotager();
 		} catch (BLLexception e) {
-			e.printStackTrace();
-			System.err.println("nothing to display !");
-			return null;
+			throw new WSexception(e.getMessage());
 		}
 	}
 	
@@ -31,4 +30,10 @@ public class WebServicePotager {
 	public Potager getById(@PathVariable("id") Integer id) {
 		return manager.getPotagerById(id);
 	}
+	
+	@ExceptionHandler({ WSexception.class })
+	public String handler(WSexception e) {
+		return e.getMessage();
+	}
+	
 }
