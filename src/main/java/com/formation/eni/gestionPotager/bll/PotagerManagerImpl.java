@@ -168,7 +168,6 @@ public class PotagerManagerImpl implements PotagerManager {
 		if (plantNotExist(plant.getName(), plant.getVariety())) {
 			throw new BLLexception("BLL/updatePlant(): IMPOSSIBLE, cette plante n'existe pas encore");
 		}
-		daoPlant.save(plant);
 	}
 
 	@Override
