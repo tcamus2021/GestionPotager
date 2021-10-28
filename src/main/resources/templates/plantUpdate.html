@@ -6,21 +6,48 @@
 <title>Plant update</title>
 </head>
 <body>
-	<form th:action="@{/plant/update/{id}(id=${plant.idPlant})}"  method="post">
-	    <label for="nom">Name</label>
-	    <input type="text" th:field="*{plant.name}" id="nom" placeholder="name">
-	    <label for="plantType">Plant type</label>
-	    <select th:field="*{plant.plantType}" id="plantType">
-	    	<option value="FRUIT">FRUIT</option>
-	    	<option value="VEGETABLE">VEGETABLE</option>
-	    	<option value="LEAVE">LEAVE</option>
-	    	<option value="ROOT">ROOT</option>
-	    </select>
-	     <label for="variety">Variety</label>
-	    <input type="text" th:field="*{plant.variety}" id="variety" placeholder="variety">
-	    <label for="aera">aera</label>
-	    <input type="number" th:field="*{plant.aera}" id="aera" placeholder="aera">
-	    <input type="submit" value="Validate">   
+	<h1 class="col-12 text-center">Update the plant</h1>
+	<form th:action="@{/plant/update/{id}(id=${plant.idPlant})}" method="post" class="offset-2 col-8">
+		<div class="d-flex offset-4 col-4">
+			<div class="col-6 d-flex justify-content-start">
+	    		<label for="nom" class="justify-content-start">Name</label>
+	    	</div>
+			<div class="col-6 d-flex justify-content-end">
+	    		<input type="text" th:field="*{plant.name}" id="nom" placeholder="name">
+	    	</div>
+	    </div>
+		<div class="d-flex offset-4 col-4">
+			<div class="col-6 d-flex justify-content-start">
+    			<label for="plantType">Plant type</label>
+	    	</div>
+			<div class="col-6 d-flex justify-content-end">
+			    <select th:field="*{plant.plantType}" id="plantType">
+			    	<option value="FRUIT">FRUIT</option>
+			    	<option value="VEGETABLE">VEGETABLE</option>
+			    	<option value="LEAVE">LEAVE</option>
+			    	<option value="ROOT">ROOT</option>
+			    </select>
+			</div>
+    	</div>
+	    <div class="d-flex offset-4 col-4">
+	    	<div class="col-6 d-flex justify-content-start">
+		    	<label for="variety">Variety</label>
+		    </div>
+	    	<div class="col-6 d-flex justify-content-end">
+		    	<input type="text" th:field="*{plant.variety}" id="variety" placeholder="variety">
+	    	</div>
+	    </div>
+	    <div class="d-flex offset-4 col-4">
+	    	<div class="col-6 d-flex justify-content-start">
+		    	<label for="aera">Aera</label>
+		    </div>
+	    	<div class="col-6 d-flex justify-content-end">
+		    	<input type="number" th:field="*{plant.aera}" id="aera" placeholder="aera">
+		    </div>
+	    </div>
+	    <div class="d-flex justify-content-center m-2">
+	    	<input type="submit" value="Validate">   
+	    </div>
 	</form>
 </body>
 </html>

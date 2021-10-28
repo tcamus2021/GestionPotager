@@ -6,32 +6,36 @@
 <title>Plant list</title>
 </head>
 <body>
-<h1>List of the plant</h1>
+<h1 class="col-12 text-center">List of the plant</h1>
 <h3></h3>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Identifier</th>
-				<th>Name</th>
-				<th>Plant type</th>
-				<th>Variety</th>
-				<th>Aera</th>
-				<th>Update</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="plant : ${plants}">
-				<th th:text="${plant.idPlant}"></th>
-				<td th:text="${plant.name}"></td>
-				<td th:text="${plant.plantType}"></td>
-				<td th:text="${plant.variety}"></td>
-				<td th:text="${plant.aera}"></td>
-				<td><a th:href="@{/plant/update/{id}(id=${plant.idPlant})}">Update</a></td>
-				<td><a th:href="@{/plant/delete/{id}(id=${plant.idPlant})}">Delete</a></td>
-			</tr>
-		</tbody>
-	</table>
-	<a th:href="@{/plant/create}"><button class="btn btn-primary">Create</button></a>
+	<div class="offset-2 col-8">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="text-center">Identifier</th>
+					<th class="text-center">Name</th>
+					<th class="text-center">Plant type</th>
+					<th class="text-center">Variety</th>
+					<th class="text-center">Aera</th>
+					<th class="text-center">Update</th>
+					<th class="text-center">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="plant : ${plants}" class="plant-row">
+					<th th:text="${plant.idPlant}" class="text-center"></th>
+					<td th:text="${plant.name}" class="text-center"></td>
+					<td th:text="${plant.plantType}" class="text-center"></td>
+					<td th:text="${plant.variety}" class="text-center"></td>
+					<td th:text="${plant.aera}" class="text-center"></td>
+					<td class="text-center"><a th:href="@{/plant/update/{id}(id=${plant.idPlant})}">Update</a></td>
+					<td class="text-center"><a th:href="@{/plant/delete/{id}(id=${plant.idPlant})}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="d-flex justify-content-center">
+		<a th:href="@{/plant/create}"><button class="btn btn-primary">Create</button></a>
+	</div>
 </body>
 </html>

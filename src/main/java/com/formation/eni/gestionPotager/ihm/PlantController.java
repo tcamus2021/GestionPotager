@@ -1,5 +1,7 @@
 package com.formation.eni.gestionPotager.ihm;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +36,7 @@ public class PlantController {
 	}
 	
 	@PostMapping("/plant/update/{id}")
-	public String delete(Model model, Plant plant, @PathVariable("id") Integer id) {
+	public String delete(Model model, @Valid Plant plant, @PathVariable("id") Integer id) {
 		try {
 			plant.setIdPlant(id);
 			manager.updatePlant(plant);
@@ -60,7 +62,7 @@ public class PlantController {
 	}
 	
 	@PostMapping("/plant/create")
-	public String createTreatment(Plant plant) {
+	public String createTreatment(@Valid Plant plant) {
 		try {
 			manager.insertPlant(plant);
 		} catch (BLLexception e) {

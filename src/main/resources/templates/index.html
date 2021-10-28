@@ -6,9 +6,15 @@
 <title>Home</title>
 </head>
 <body>
-	<h1>Home</h1>
-	<a th:href="@{/potager}"><button class="btn btn-primary">All potagers</button></a>
-	<a th:href="@{/field}"><button class="btn btn-primary">All fields</button></a>
-	<a th:href="@{/plant}"><button class="btn btn-primary">All plant</button></a>
+	<h1 class="col-12 text-center">Home</h1>
+	<div class="d-flex justify-content-center">
+		<a th:href="@{/potager}"><button class="btn btn-primary m-2">All potagers</button></a>
+	</div>
+	<div class="d-flex justify-content-center">
+		<a th:href="@{/field}"><button class="btn btn-primary m-2">All fields</button></a>
+	</div>
+	<div class="d-flex justify-content-center">
+		<a th:href="@{/plant}"><button class="btn btn-primary m-2">All plant</button></a>
+	</div>
 </body>
 </html>

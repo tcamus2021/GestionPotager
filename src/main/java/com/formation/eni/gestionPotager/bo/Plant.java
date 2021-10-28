@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -29,9 +31,13 @@ public class Plant {
 	@Id
 	@GeneratedValue
 	private Integer idPlant;
+	@NotBlank
 	private String name;
+	@NotNull
 	private PlantType plantType;
+	@NotBlank
 	private String variety;
+	@NotNull
 	private Integer aera; // (square centimeter)
 	@ManyToMany
 //	@JsonManagedReference
