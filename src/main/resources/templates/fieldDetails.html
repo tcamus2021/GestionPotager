@@ -66,27 +66,27 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Identifier</th>
-					<th>Plant name</th>
-					<th>Number of plant</th>
-					<th>Establishment</th>
-					<th>Harvest Time</th>
+					<th class="text-center">Identifier</th>
+					<th class="text-center">Plant name</th>
+					<th class="text-center">Number of plant</th>
+					<th class="text-center">Establishment</th>
+					<th class="text-center">Harvest Time</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="implantation : ${field.implantations}">
-					<th th:text="${implantation.idImplentation}"></th>
-					<td th:text="${implantation.plant.name}"></td>
-					<td th:text="${implantation.nbPlant}"></td>
-					<td th:text="${implantation.establishment}"></td>
-					<td th:text="${implantation.harvest}"></td>
+					<th th:text="${implantation.idImplentation}" class="text-center"></th>
+					<td th:text="${implantation.plant.name}" class="text-center"></td>
+					<td th:text="${implantation.nbPlant}" class="text-center"></td>
+					<td th:text="${implantation.establishment}" class="text-center"></td>
+					<td th:text="${implantation.harvest}" class="text-center"></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="d-flex justify-content-center">
 		<a th:href="@{/implantation/create/{idField}(idField=${field.idField})}"><button class="btn btn-primary m-2">Create Implantation</button></a>
-		<a th:href="@{/potager}"><button class="btn btn-primary m-2">Go Back To List</button></a>
+		<a th:href="@{/potager}"><button class="btn btn-primary m-2">Go Back To Potager List</button></a>
 	</div>
 </body>
 </html>
