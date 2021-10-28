@@ -24,7 +24,8 @@ public class PotagerController {
 	 
 	@GetMapping("/")
 	public String home(Model model) {
-		return "redirect:/potager";
+//		return "redirect:/potager";
+		return "index";
 	}
 	
 	@GetMapping("/potager")
@@ -34,15 +35,15 @@ public class PotagerController {
 		} catch (BLLexception e) {
 			model.addAttribute("error",e.getMessage());
 		}
-		return "potager";
+		return "potagerGetAll";
 	}
 	 
-	@GetMapping("/potager/add")
+	@GetMapping("/potager/create")
 	public String goAddPotager(PotagerForm potagerForm, Model model) {
 		return "potagerCreate";
 	}
 	
-	@PostMapping("/potager/add")
+	@PostMapping("/potager/create")
 	public String calc(@Valid PotagerForm potagerForm, BindingResult errors, Model model) {
 		Potager potager = potagerForm.getPotager();
 		try {
@@ -57,7 +58,7 @@ public class PotagerController {
 	@GetMapping("/potager/{id}")
 	public String showPotager(@PathVariable Integer id, PotagerForm potagerForm, Model model) {
 		model.addAttribute("potager", manager.getPotagerById(id));
-		return "potagerShow";
+		return "potagerDetails";
 	}
 	
 	

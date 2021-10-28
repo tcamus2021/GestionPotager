@@ -49,15 +49,15 @@ public class FieldController {
 		return "fieldUpdate";
 	}
 
-	@GetMapping("/field/delete/{id}")
-	public String deleteTreatment(Model model, @PathVariable Integer idField) {
-		try {
-			List<Field> listeFields = manager.getAllField();
-			listeFields.removeIf(field -> field.getIdField() != idField);
-			manager.deleteField(listeFields.get(0));
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-	}
+//	@GetMapping("/field/delete/{id}")
+//	public String deleteTreatment(Model model, @PathVariable Integer idField) {
+//		try {
+//			List<Field> listeFields = manager.getAllField();
+//			listeFields.removeIf(field -> field.getIdField() != idField);
+//			manager.deleteField(listeFields.get(0));
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
+//	}
 }

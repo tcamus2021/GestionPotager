@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>Show Potager</title>
 </head>
 <body>
 	<div>
-		<h2>Informations about Potager </h2>
-		<table>
+		<h1>Informations about Potager </h1>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>id</th>
@@ -28,37 +29,33 @@
 				</tr>
 			</tbody>
 		</table>
-	</div>
-	
+	</div>	
 	<div>
 		<h2>List of Fields</h2>
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
-					<th>id</th>
-					<th>nom</th>
-					<th>aera</th>
-					<th>location</th>
-					<th>city</th>
-					<th>(links)</th>
+					<th>Id</th>
+					<th>Aera</th>
+					<th>GroundType</th>
+					<th>ExpositionType</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td th:text="${potager.idPotager}"></td>
-					<td th:text="${potager.nom}"></td>
-					<td th:text="${potager.aera}"></td>
-					<td th:text="${potager.location}"></td>
-					<td th:text="${potager.city}"></td>
+				<tr th:each="field : ${potager.fields}">
+					<th th:text="${field.idField}"></th>
+					<td th:text="${field.aera}"></td>
+					<td th:text="${field.groundType}"></td>
+					<td th:text="${field.expositionType}"></td>
+					<td><a th:href="@{/field/update/{id}(id=${field.idField})}">Show</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	
-
-<!-- <div>
+<div>
 	<h2>you want to add new Potager ?</h2>
 	<span><a th:href="@{/potager/add}">create</a></span>
-</div> -->
+</div> 
 </body>
 </html>
