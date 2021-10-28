@@ -29,6 +29,11 @@
 				</tr>
 			</tbody>
 		</table>
+		<div>
+			<h6>you want to modify ?</h6>
+			<span><a th:href="@{/potager/update/{id}(id=${potager.idPotager})">update</a></span>
+			<span><a th:href="@{/potager/delete/{id}(id=${potager.idPotager})">delete</a></span>
+		</div>
 	</div>	
 	<div>
 		<h2>List of Fields</h2>
@@ -48,14 +53,17 @@
 					<td th:text="${field.aera}"></td>
 					<td th:text="${field.groundType}"></td>
 					<td th:text="${field.expositionType}"></td>
-					<td><a th:href="@{/field/update/{id}(id=${field.idField})}">Show</a></td>
+					<td><a th:href="@{/field/{id}(id=${field.idField})}">Show</a></td>
 				</tr>
 			</tbody>
 		</table>
+		<div>
+			<h6>you want to add new Field ?</h6>
+			<span><a th:href="@{/field/create}">create</a></span>
+		</div>
 	</div>
 <div>
-	<h2>you want to add new Potager ?</h2>
-	<span><a th:href="@{/potager/add}">create</a></span>
+	<span><a th:href="@{/potager}">! go home !</a></span>
 </div> 
 </body>
 </html>
