@@ -6,6 +6,22 @@
 <title>Potager update</title>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="#">MyPotager</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	      <div class="navbar-nav">
+	        <a class="nav-link" aria-current="page" th:href="@{/}">Home</a>
+	        <a class="nav-link" th:href="@{/potager}">Potager List</a>
+	        <a class="nav-link" th:href="@{/field}">Field List</a>
+	        <a class="nav-link" th:href="@{/plant}">Plant List</a>
+	      </div>
+	    </div>
+	  </div>
+	</nav>
 	<h1 class="col-12 text-center">Complete form to modify this Potager</h1>
 	<form th:action="@{/potager/update/{id}(id=${potagerForm.potager.idPotager})}" th:object="${potagerForm}" method="post" class="offset-2 col-8">
 		<div class="d-flex offset-4 col-4">

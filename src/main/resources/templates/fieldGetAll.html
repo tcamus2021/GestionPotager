@@ -6,28 +6,45 @@
 <title>Fields</title>
 </head>
 <body>
-	<h1>Fields of Potager</h1>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="#">MyPotager</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	      <div class="navbar-nav">
+	        <a class="nav-link " aria-current="page" th:href="@{/}">Home</a>
+	        <a class="nav-link" th:href="@{/potager}">Potager List</a>
+	        <a class="nav-link active" th:href="@{/field}">Field List</a>
+	        <a class="nav-link" th:href="@{/plant}">Plant List</a>
+	      </div>
+	    </div>
+	  </div>
+	</nav>
+	<h1 class="text-center col-12">Fields of Potager</h1>
 	<h3></h3>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Identifier</th>
-				<th>Aera</th>
-				<th>GroundType</th>
-				<th>ExpositionType</th>
-				<th>Show</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="field : ${fields}">
-				<th th:text="${field.idField}"></th>
-				<td th:text="${field.aera}"></td>
-				<td th:text="${field.groundType}"></td>
-				<td th:text="${field.expositionType}"></td>
-				<td><a th:href="@{/field/{id}(id=${field.idField})}">Show</a></td>
-			</tr>
-		</tbody>
-	</table>
-	<a th:href="@{/field/add}"><button class="btn btn-primary">Add</button></a>
+	<div class="offset-2 col-8">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="text-center">Identifier</th>
+					<th class="text-center">Aera</th>
+					<th class="text-center">GroundType</th>
+					<th class="text-center">ExpositionType</th>
+					<th class="text-center">Show</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="field : ${fields}" class="text-center">
+					<th th:text="${field.idField}" class="text-center"></th>
+					<td th:text="${field.aera}" class="text-center"></td>
+					<td th:text="${field.groundType}" class="text-center"></td>
+					<td th:text="${field.expositionType}" class="text-center"></td>
+					<td class="text-center"><a th:href="@{/field/{id}(id=${field.idField})}">Show</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>
