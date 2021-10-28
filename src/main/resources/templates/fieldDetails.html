@@ -9,36 +9,60 @@
 	<h3 style="color:red" th:text="${error}"></h3>
 	<h3 style="color:green" th:text="${succes}"></h3>	
 	<div>
-		<h1>Informations about Field </h1>
-		<h2 th:text="'Field n°'+${field.idField}"></h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Identifier</th>
-					<th>Aera</th>
-					<th>GroundType</th>
-					<th>ExpositionType</th>
-					<th>Potager number</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th th:text="${field.idField}"></th>
-					<td th:text="${field.aera}"></td>
-					<td th:text="${field.groundType}"></td>
-					<td th:text="${field.expositionType}"></td>
-					<td th:text="${field.potager.idPotager}"></td>
-				</tr>
-			</tbody>
-		</table>
-		<div>
-			<h6>you want to modify ?</h6>
-			<span><a th:href="@{/field/update/{id}(id=${field.idField})}">update</a></span>
-			<span><a th:href="@{/field/delete/{id}(id=${field.idField})}">delete</a></span>
+		<h1 class="col-12 text-center">Informations about a Field</h1>
+		
+		<div class="offset-5 col-2 d-flex">
+			<div class="col-6 d-flex justify-content-start">
+				<span><strong>Identifier : </strong></span>
+			</div>
+			<div class="col-6 d-flex justify-content-end">
+				<span th:text="${field.idField}"></span>
+			</div>
+		</div>
+		
+		<div class="offset-5 col-2 d-flex">
+			<div class="col-6 d-flex justify-content-start">
+				<span><strong>Aera : </strong></span>
+			</div>
+			<div class="col-6 d-flex justify-content-end">
+				<span th:text="${field.aera}"></span>
+			</div>
+		</div>
+		
+		<div class="offset-5 col-2 d-flex">
+			<div class="col-6 d-flex justify-content-start">
+				<span><strong>Ground Type : </strong></span>
+			</div>
+			<div class="col-6 d-flex justify-content-end">
+				<span th:text="${field.groundType}"></span>
+			</div>
+		</div>
+		
+		<div class="offset-5 col-2 d-flex">
+			<div class="col-6 d-flex justify-content-start">
+				<span><strong>Exposition Type : </strong></span>
+			</div>
+			<div class="col-6 d-flex justify-content-end">
+				<span th:text="${field.expositionType}"></span>
+			</div>
+		</div>
+		
+		<div class="offset-5 col-2 d-flex">
+			<div class="col-6 d-flex justify-content-start">
+				<span><strong>Potager identifier : </strong></span>
+			</div>
+			<div class="col-6 d-flex justify-content-end">
+				<span th:text="${field.potager.idPotager}"></span>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<a th:href="@{/field/update/{id}(id=${field.idField})}"><button class="btn btn-primary m-2">Update</button></a>
+			<a th:href="@{/field/delete/{id}(id=${field.idField})}"><button class="btn btn-primary m-2">Delete</button></a>
 		</div>
 	</div>	
-	<div>
-		<h2>List of Implantations</h2>
+	<br/>
+	<h2 class="col-12 text-center">List of Implantations</h2>
+	<div class="offset-2 col-8">
 		<table class="table">
 			<thead>
 				<tr>
@@ -59,14 +83,10 @@
 				</tr>
 			</tbody>
 		</table>
-		<div>
-			<h6>you want to add new Implantation ?</h6>
-			<a th:href="@{/implantation/create/{idField}(idField=${field.idField})}">ffff</a>
-<!-- 			<span><a th:href="@{/implantation/create/{idField}(idField=${field.idField})}">create</a></span>
- -->		</div>	
 	</div>
-	<div>
-		<span><a th:href="@{/potager}">Go Back To List</a></span>
+	<div class="d-flex justify-content-center">
+		<a th:href="@{/implantation/create/{idField}(idField=${field.idField})}"><button class="btn btn-primary m-2">Create Implantation</button></a>
+		<a th:href="@{/potager}"><button class="btn btn-primary m-2">Go Back To List</button></a>
 	</div>
 </body>
 </html>
