@@ -94,7 +94,7 @@ public class PotagerController {
 			return "potagerGetAll";
 		}
 		model.addAttribute("succes","Potager delete with succes !");
-		return "redirect:/potager";
+		return "potagerGetAll";
 	}
 
 }
