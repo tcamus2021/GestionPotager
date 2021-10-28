@@ -6,6 +6,8 @@
 <title>Show Potager</title>
 </head>
 <body>
+	<h3 style="color:red" th:text="${error}"></h3>
+	<h3 style="color:green" th:text="${succes}"></h3>	
 	<div>
 		<h1>Informations about Potager </h1>
 		<table class="table">
@@ -63,7 +65,7 @@
 		</div>
 	</div>
 <div>
-	<span><a th:href="@{/potager}">! go home !</a></span>
+	<span><a th:href="@{/potager}">Go Back To List</a></span>
 </div> 
 </body>
 </html>
