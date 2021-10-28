@@ -2,13 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List Potager</title>
+<title>Show Potager</title>
 </head>
 <body>
-<div th:switch="${potagers}">
-	<h2 th:case="null">No Potager available at this time</h2>
-	<div th:case="*">
-		<h2>List of recorded Potager</h2>
+	<div>
+		<h2>Informations about Potager </h2>
 		<table>
 			<thead>
 				<tr>
@@ -21,21 +19,46 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="potager : ${potagers}">
+				<tr>
 					<td th:text="${potager.idPotager}"></td>
 					<td th:text="${potager.nom}"></td>
 					<td th:text="${potager.aera}"></td>
 					<td th:text="${potager.location}"></td>
 					<td th:text="${potager.city}"></td>
-					<td><a th:href="@{/potager/{id}(id=${potager.idPotager})}">show</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-</div>
-<div>
+	
+	<div>
+		<h2>List of Fields</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>nom</th>
+					<th>aera</th>
+					<th>location</th>
+					<th>city</th>
+					<th>(links)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${potager.idPotager}"></td>
+					<td th:text="${potager.nom}"></td>
+					<td th:text="${potager.aera}"></td>
+					<td th:text="${potager.location}"></td>
+					<td th:text="${potager.city}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+
+<!-- <div>
 	<h2>you want to add new Potager ?</h2>
 	<span><a th:href="@{/potager/add}">create</a></span>
-</div>
+</div> -->
 </body>
 </html>
