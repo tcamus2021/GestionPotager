@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.formation.eni.gestionPotager.bll.BLLexception;
 import com.formation.eni.gestionPotager.bll.PotagerManager;
+import com.formation.eni.gestionPotager.bo.Potager;
+import com.formation.eni.gestionPotager.ihm.form.PotagerForm;
 
 @Controller
 public class PotagerController {
@@ -26,7 +29,6 @@ public class PotagerController {
 	
 	@GetMapping("/potager")
 	public String listPotager(Model model) {
-//		model.addAttribute("msg","Bienvenu ! vous-pouvez démarer un calcul !");
 		try {
 			model.addAttribute("potagers", manager.getAllPotager());
 		} catch (BLLexception e) {
@@ -35,28 +37,28 @@ public class PotagerController {
 		return "potager";
 	}
 	 
-//	@GetMapping("/potager/add")
-//	public String newPotager() {
-//		return "redirect:/";
-//	}
-//	
-//	@PostMapping("/potager/add")
-//	public String calc(@Valid CalculatriceForm calculatriceForm, BindingResult errors, Model model) {
-//		Calcule calc = new Calcule();
-//		try {
-//			calc = Calcule.builder()
-//					.numA(calculatriceForm.getNumA())
-//					.operateur(calculatriceForm.getOperateur())
-//					.numB(calculatriceForm.getNumB())
-//					.res(manager.calculer(calculatriceForm)).build();
-//		} catch (Exception e) {
-//			model.addAttribute("msg",e.getMessage());
-//		}
-//		if(calc.getRes() != null) {
-//			manager.addCalcule(calc);
-//			model.addAttribute("msg","Resultat du calcul sauvegarder ! : res = "+calc.getRes());
-//		}
-//		model.addAttribute("resultats", manager.getAllCalcules());
-//		return "home";
-//	}
+	@GetMapping("/potager/add")
+	public String goAddPotager(PotagerForm potagerForm, Model model) {
+		return "potagerCreate";
+	}
+	
+	@PostMapping("/potager/add")
+	public String calc(@Valid PotagerForm potagerForm, BindingResult errors, Model model) {
+		Potager potager = potagerForm.getPotager();
+		try {
+			manager.insertPotager(potager);
+		} catch (BLLexception e) {
+			model.addAttribute("error",e.getMessage());
+			return "potagerCreate";
+		}
+		return "redirect:/potager/"+potager.getIdPotager();
+	}
+	
+	@GetMapping("/potager/{id}")
+	public String showPotager(@PathVariable Integer id, PotagerForm potagerForm, Model model) {
+		model.addAttribute("potager", manager.getPotagerById(id));
+		return "potagerShow";
+	}
+	
+	
 }
