@@ -7,9 +7,9 @@
 </head>
 <body>
 <h1 th:text="${error}"></h1>
-<form th:action="@{/potager/add}" th:object="${potagerForm}" method="post">
+<form th:action="@{/potager/create}" th:object="${potagerForm}" method="post">
     <label for="nom">nom</label>
-    <input type="text" th:field="*{potager.nom}" id="nom" placeholder="nom">
+    <input type="text" th:field="*{potager.nom}" id="nom" placeholder="potager.nom">
     <label for="aera">aera</label>
     <input type="number" step="1" th:field="*{potager.aera}" id="aera" placeholder="aera">
      <label for="location">location</label>
