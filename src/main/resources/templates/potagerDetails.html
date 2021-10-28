@@ -8,64 +8,78 @@
 <body>
 	<h3 style="color:red" th:text="${error}"></h3>
 	<h3 style="color:green" th:text="${succes}"></h3>	
-	<div>
-		<h1>Informations about Potager </h1>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th>nom</th>
-					<th>aera</th>
-					<th>location</th>
-					<th>city</th>
-					<th>(links)</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td th:text="${potager.idPotager}"></td>
-					<td th:text="${potager.nom}"></td>
-					<td th:text="${potager.aera}"></td>
-					<td th:text="${potager.location}"></td>
-					<td th:text="${potager.city}"></td>
-				</tr>
-			</tbody>
-		</table>
-		<div>
-			<h6>you want to modify ?</h6>
-			<span><a th:href="@{/potager/update/{id}(id=${potager.idPotager})}">update</a></span>
-			<span><a th:href="@{/potager/delete/{id}(id=${potager.idPotager})}">delete</a></span>
+	<h1 class="col-12 text-center">Informations about Potager </h1>
+	<div class="offset-5 col-2 d-flex">
+		<div class="col-6 d-flex justify-content-start">
+			<span><strong>Identifier : </strong></span>
 		</div>
-	</div>	
-	<div>
-		<h2>List of Fields</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Aera</th>
-					<th>GroundType</th>
-					<th>ExpositionType</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="field : ${potager.fields}">
-					<th th:text="${field.idField}"></th>
-					<td th:text="${field.aera}"></td>
-					<td th:text="${field.groundType}"></td>
-					<td th:text="${field.expositionType}"></td>
-					<td><a th:href="@{/field/{id}(id=${field.idField})}">Show</a></td>
-				</tr>
-			</tbody>
-		</table>
-		<div>
-			<h6>you want to add new Field ?</h6>
-			<span><a th:href="@{/field/create/{idPotager}(idPotager=${potager.idPotager})}">create</a></span>
+		<div class="col-6 d-flex justify-content-end">
+			<span th:text="${potager.idPotager}"></span>
 		</div>
 	</div>
-<div>
-	<span><a th:href="@{/potager}">Go Back To List</a></span>
-</div> 
+	<div class="offset-5 col-2 d-flex">
+		<div class="col-6 d-flex justify-content-start">
+			<span><strong>Name : </strong></span>
+		</div>
+		<div class="col-6 d-flex justify-content-end">
+			<span th:text="${potager.nom}"></span>
+		</div>
+	</div>
+	<div class="offset-5 col-2 d-flex">
+		<div class="col-6 d-flex justify-content-start">
+			<span><strong>Aera : </strong></span>
+		</div>
+		<div class="col-6 d-flex justify-content-end">
+			<span th:text="${potager.aera}"></span>
+		</div>
+	</div>
+	<div class="offset-5 col-2 d-flex">
+		<div class="col-6 d-flex justify-content-start">
+			<span><strong>Location : </strong></span>
+		</div>
+		<div class="col-6 d-flex justify-content-end">
+			<span th:text="${potager.location}"></span>
+		</div>
+	</div>
+	<div class="offset-5 col-2 d-flex">
+		<div class="col-6 d-flex justify-content-start">
+			<span><strong>City : </strong></span>
+		</div>
+		<div class="col-6 d-flex justify-content-end">
+			<span th:text="${potager.city}"></span>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center">
+		<a th:href="@{/potager/update/{id}(id=${potager.idPotager})}"><button class="btn btn-primary m-2">update</button></a>
+		<a th:href="@{/potager/delete/{id}(id=${potager.idPotager})}"><button class="btn btn-primary m-2">delete</button></a>
+	</div>	
+	<br/>
+	<h2 class="col-12 text-center">List of Fields</h2>
+	<div class="offset-2 col-8">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="text-center">Id</th>
+					<th class="text-center">Aera</th>
+					<th class="text-center">GroundType</th>
+					<th class="text-center">ExpositionType</th>
+					<th class="text-center">Show</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="field : ${potager.fields}" class="text-center">
+					<th th:text="${field.idField}" class="text-center"></th>
+					<td th:text="${field.aera}" class="text-center"></td>
+					<td th:text="${field.groundType}" class="text-center"></td>
+					<td th:text="${field.expositionType}" class="text-center"></td>
+					<td class="text-center"><a th:href="@{/field/{id}(id=${field.idField})}">Show</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="d-flex justify-content-center">
+		<a th:href="@{/field/create/{id}(id=${potager.idPotager})}"><button class="btn btn-primary m-2">Create a new field</button></a>
+		<a th:href="@{/potager}"><button class="btn btn-primary m-2">Go Back To List</button></a>
+	</div> 
 </body>
 </html>

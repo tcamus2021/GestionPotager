@@ -6,39 +6,40 @@
 <title>List Potager</title>
 </head>
 <body>
-	<h3 style="color:red" th:text="${error}"></h3>
-	<h3 style="color:green" th:text="${succes}"></h3>	
+	<h3 class="text-danger" th:text="${error}"></h3>
+	<h3 class="text-success" th:text="${succes}"></h3>	
 	<div th:switch="${potagers}">
 		<h3 th:case="null">No Potager available at this time</h3>
 		<div th:case="*">
-			<h1>List of recorded Potager</h1>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>nom</th>
-						<th>aera</th>
-						<th>location</th>
-						<th>city</th>
-						<th>(links)</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="potager : ${potagers}">
-						<td th:text="${potager.idPotager}"></td>
-						<td th:text="${potager.nom}"></td>
-						<td th:text="${potager.aera}"></td>
-						<td th:text="${potager.location}"></td>
-						<td th:text="${potager.city}"></td>
-						<td><a th:href="@{/potager/{id}(id=${potager.idPotager})}">show</a></td>
-					</tr>
-				</tbody>
-			</table>
+			<h1 class="col-12 text-center">List of recorded Potager</h1>
+			<div class="offset-2 col-8">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="text-center">id</th>
+							<th class="text-center">nom</th>
+							<th class="text-center">aera</th>
+							<th class="text-center">location</th>
+							<th class="text-center">city</th>
+							<th class="text-center">(links)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="potager : ${potagers}">
+							<th th:text="${potager.idPotager}" class="text-center"></th>
+							<td th:text="${potager.nom}" class="text-center"></td>
+							<td th:text="${potager.aera}" class="text-center"></td>
+							<td th:text="${potager.location}" class="text-center"></td>
+							<td th:text="${potager.city}" class="text-center"></td>
+							<td class="text-center"><a th:href="@{/potager/{id}(id=${potager.idPotager})}">show</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-	<div>
-		<h6>you want to add new Potager ?</h6>
-		<span><a th:href="@{/potager/create}">create</a></span>
+	<div class="d-flex justify-content-center">
+		<a th:href="@{/potager/create}"><button class="btn btn-primary m-2">Create new Potager</button></a>
 	</div>
 </body>
 </html>
