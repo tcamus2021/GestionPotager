@@ -6,51 +6,67 @@
 <title>Fields</title>
 </head>
 <body>
-	<h1>Field number <span th:text="${field.idField}"></span></h1>
-	<h3></h3>
-	<h2>Details:</h2>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Identifier</th>
-				<th>Aera</th>
-				<th>GroundType</th>
-				<th>ExpositionType</th>
-				<th>Potager number</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th th:text="${field.idField}"></th>
-				<td th:text="${field.aera}"></td>
-				<td th:text="${field.groundType}"></td>
-				<td th:text="${field.expositionType}"></td>
-				<td th:text="${field.potager.idPotager}"></td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<h2>Implantations:</h2>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Identifier</th>
-				<th>Plant name</th>
-				<th>Number of plant</th>
-				<th>Establishment</th>
-				<th>Harvest Time</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="implantation : ${field.implantations}">
-				<th th:text="${implantation.idImplentation}"></th>
-				<td th:text="${implantation.plant.name}"></td>
-				<td th:text="${implantation.nbPlant}"></td>
-				<td th:text="${implantation.establishment}"></td>
-				<td th:text="${implantation.harvest}"></td>
-			</tr>
-		</tbody>
-	</table>
-	
+	<h3 style="color:red" th:text="${error}"></h3>
+	<h3 style="color:green" th:text="${succes}"></h3>	
+	<div>
+		<h1>Informations about Field </h1>
+		<h2 th:text="'Field n°'+${field.idField}"></h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Identifier</th>
+					<th>Aera</th>
+					<th>GroundType</th>
+					<th>ExpositionType</th>
+					<th>Potager number</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th th:text="${field.idField}"></th>
+					<td th:text="${field.aera}"></td>
+					<td th:text="${field.groundType}"></td>
+					<td th:text="${field.expositionType}"></td>
+					<td th:text="${field.potager.idPotager}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<h6>you want to modify ?</h6>
+			<span><a th:href="@{/field/update/{id}(id=${field.idField})}">update</a></span>
+			<span><a th:href="@{/field/delete/{id}(id=${field.idField})}">delete</a></span>
+		</div>
+	</div>	
+	<div>
+		<h2>List of Implantations</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Identifier</th>
+					<th>Plant name</th>
+					<th>Number of plant</th>
+					<th>Establishment</th>
+					<th>Harvest Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="implantation : ${field.implantations}">
+					<th th:text="${implantation.idImplentation}"></th>
+					<td th:text="${implantation.plant.name}"></td>
+					<td th:text="${implantation.nbPlant}"></td>
+					<td th:text="${implantation.establishment}"></td>
+					<td th:text="${implantation.harvest}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<h6>you want to add new Implantation ?</h6>
+			<a th:href="@{/implantation/create/{idField}(idField=${field.idField})}">ffff</a>
+<!-- 			<span><a th:href="@{/implantation/create/{idField}(idField=${field.idField})}">create</a></span>
+ -->		</div>	
+	</div>
+	<div>
+		<span><a th:href="@{/potager}">Go Back To List</a></span>
+	</div>
 </body>
 </html>
