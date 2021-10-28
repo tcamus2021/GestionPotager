@@ -6,6 +6,8 @@
 <title>Show Potager</title>
 </head>
 <body>
+	<h3 style="color:red" th:text="${error}"></h3>
+	<h3 style="color:green" th:text="${succes}"></h3>	
 	<div>
 		<h1>Informations about Potager </h1>
 		<table class="table">
@@ -58,12 +60,12 @@
 			</tbody>
 		</table>
 		<div>
-			<h6>you want to add new Field ?</h6><!-- 
-			<span><a th:href="@{/field/create}">create</a></span> -->
+			<h6>you want to add new Field ?</h6>
+			<span><a th:href="@{/field/create/{idPotager}(idPotager=${potager.idPotager})}">create</a></span>
 		</div>
 	</div>
 <div>
-	<span><a th:href="@{/potager}">! go home !</a></span>
+	<span><a th:href="@{/potager}">Go Back To List</a></span>
 </div> 
 </body>
 </html>

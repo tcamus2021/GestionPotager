@@ -74,4 +74,22 @@ public class FieldController {
 	public String addField(Model model, Field field) {
 		return "fieldAdd";
 	}
+	
+	@GetMapping("/field/create/{idPotager}")
+	public String goCreateField(@PathVariable Integer idPotager, Model model, Field field) {
+		model.addAttribute("potager", manager.getPotagerById(idPotager));
+		return "fieldCreate";
+	}
+	
+	@PostMapping("/field/create/{idPotager}")
+	public String createField(@PathVariable Integer idPotager, Model model, Field field) {
+		field.setPotager(manager.getPotagerById(idPotager));
+		try {
+			manager.insertField(field);
+		} catch (BLLexception e) {
+			model.addAttribute("error",e.getMessage());
+			return "fieldCreate";
+		}
+		return "redirect:/field/"+field.getIdField();
+	}
 }

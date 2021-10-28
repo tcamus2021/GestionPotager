@@ -6,20 +6,22 @@
 <title>Create Potager</title>
 </head>
 <body>
-<h1 th:text="${error}"></h1>
-<form th:action="@{/potager/create}" th:object="${potagerForm}" method="post">
-    <label for="nom">nom</label>
-    <input type="text" th:field="*{potager.nom}" id="nom" placeholder="potager.nom">
-    <label for="aera">aera</label>
-    <input type="number" step="1" th:field="*{potager.aera}" id="aera" placeholder="aera">
-     <label for="location">location</label>
-    <input type="text" th:field="*{potager.location}" id="location" placeholder="location">
-    <label for="city">city</label>
-    <input type="text" th:field="*{potager.city}" id="city" placeholder="city">
-    <input type="submit" value="Validate">   
-</form>
-<div>
-	<span><a th:href="@{/potager}">! go home !</a></span>
-</div>
+	<h3 style="color:red" th:text="${error}"></h3>
+	<h3 style="color:green" th:text="${succes}"></h3>	
+	<h1>Complete form to build new Potager</h1>
+	<form th:action="@{/potager/create}" th:object="${potagerForm}" method="post">
+	    <label for="nom">nom</label>
+	    <input type="text" th:field="*{potager.nom}" id="nom" placeholder="nom">
+	    <label for="aera">aera</label>
+	    <input type="number" step="1" th:field="*{potager.aera}" id="aera" placeholder="aera">
+	    <label for="location">location</label>
+	    <input type="text" th:field="*{potager.location}" id="location" placeholder="location">
+	    <label for="city">city</label>
+	    <input type="text" th:field="*{potager.city}" id="city" placeholder="city">
+	    <input type="submit" value="Validate">   
+	</form>
+	<div>
+		<span><a href="javascript:history.back();">Cancel</a></span>
+	</div>
 </body>
 </html>

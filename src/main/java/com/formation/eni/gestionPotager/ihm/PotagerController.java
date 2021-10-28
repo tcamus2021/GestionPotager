@@ -24,7 +24,6 @@ public class PotagerController {
 	 
 	@GetMapping("/")
 	public String home(Model model) {
-//		return "redirect:/potager";
 		return "index";
 	}
 	
@@ -94,7 +93,7 @@ public class PotagerController {
 			return "potagerGetAll";
 		}
 		model.addAttribute("succes","Potager delete with succes !");
-		return "redirect:/potager";
+		return "potagerGetAll";
 	}
 
 }
