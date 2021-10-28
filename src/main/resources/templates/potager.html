@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>CALCULATRICE</title>
+</head>
+<body>
+<div th:switch="${potagers}">
+	<h2 th:case="null">Pas de potager pour le moment</h2>
+	<div th:case="*">
+		<h2>List of recorded Potager</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>location</th>
+					<th>nom</th>
+					<th>aera</th>
+					<th>city</th>
+					<th>(links)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="potager : ${potagers}">
+					<td th:text="${potager.idPotager}"></td>
+					<td th:text="${potager.location}"></td>
+					<td th:text="${potager.nom}"></td>
+					<td th:text="${potager.aera}"></td>
+					<td th:text="${potager.city}"></td>
+					<td><a th:href="@{/potager/{id}(id=${potager.idPotager})}">show</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>
