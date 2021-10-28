@@ -63,8 +63,8 @@ public class PotagerController {
 	
 	
 	@GetMapping("/potager/update/{id}")
-	public String goUpdatePotager(@PathVariable Integer id,PotagerForm potagerForm, Model model) {
-		model.addAttribute("potager", manager.getPotagerById(id));
+	public String goUpdatePotager(@PathVariable Integer id, PotagerForm potagerForm, Model model) {
+		potagerForm.setPotager(manager.getPotagerById(id));
 		return "potagerUpdate";
 	}
 	
@@ -82,7 +82,18 @@ public class PotagerController {
 	
 	@GetMapping("/potager/delete/{id}")
 	public String deletePotager(@PathVariable Integer id, Model model) {
-		model.addAttribute("potager", manager.getPotagerById(id));
+		try {
+			manager.deletePotager(manager.getPotagerById(id));
+		} catch (BLLexception e) {
+			model.addAttribute("error", e.getMessage());
+			try {
+				model.addAttribute("potagers", manager.getAllPotager());
+			} catch (BLLexception e1) {
+				model.addAttribute("error",e.getMessage());
+			}
+			return "potagerGetAll";
+		}
+		model.addAttribute("succes","Potager delete with succes !");
 		return "redirect:/potager";
 	}
 
