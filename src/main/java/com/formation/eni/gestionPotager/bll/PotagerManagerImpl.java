@@ -165,8 +165,8 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	@Transactional
 	public void updatePlant(Plant plant) throws BLLexception {
-		if (!plantNotExist(plant.getName(), plant.getVariety())) {
-			throw new BLLexception("BLL/updatePlant(): IMPOSSIBLE, cette plante existe pas déjà");
+		if (plantNotExist(plant.getName(), plant.getVariety())) {
+			throw new BLLexception("BLL/updatePlant(): IMPOSSIBLE, cette plante existe pas encore�");
 		}
 		boolean find = false;
 		for (Plant plantFE : daoPlant.findAll()) {
