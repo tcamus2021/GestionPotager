@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<title>Insert title here</title>
+<title>Fields</title>
 </head>
 <body>
-
+	<h1>Field number <span th:text="${field.idField}"></span></h1>
+	<h3></h3>
+	<h2>Details:</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Identifier</th>
+				<th>Aera</th>
+				<th>GroundType</th>
+				<th>ExpositionType</th>
+				<th>Potager number</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th th:text="${field.idField}"></th>
+				<td th:text="${field.aera}"></td>
+				<td th:text="${field.groundType}"></td>
+				<td th:text="${field.expositionType}"></td>
+				<td th:text="${field.potager.idPotager}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h2>Implantations:</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Identifier</th>
+				<th>Plant name</th>
+				<th>Number of plant</th>
+				<th>Establishment</th>
+				<th>Harvest Time</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="implantation : ${field.implantations}">
+				<th th:text="${implantation.idImplentation}"></th>
+				<td th:text="${implantation.plant.name}"></td>
+				<td th:text="${implantation.nbPlant}"></td>
+				<td th:text="${implantation.establishment}"></td>
+				<td th:text="${implantation.harvest}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
 </body>
 </html>
