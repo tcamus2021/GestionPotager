@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.formation.eni.gestionPotager.bll.BLLexception;
 import com.formation.eni.gestionPotager.bll.PotagerManager;
 import com.formation.eni.gestionPotager.bo.Field;
+import com.formation.eni.gestionPotager.bo.Implantation;
 
 @Controller
 public class FieldController {
@@ -19,17 +20,20 @@ public class FieldController {
 	@Autowired
 	PotagerManager manager;
 
-	@GetMapping("/field/{idPotager}")
-	public String fieldTable(Model model, @PathVariable("idPotager") Integer idPotager) {
+	@GetMapping("/field")
+	public String fieldGetAll(Model model) {
 		try {
-			List<Field> listeFields = manager.getAllField();
-			listeFields.removeIf(field -> field.getPotager().getIdPotager() != idPotager);
-			model.addAttribute("fields", listeFields);
+			model.addAttribute("fields", manager.getAllField());
 		} catch (BLLexception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "fieldGetAll";
+	}
+	
+	@GetMapping("/field/{id}")
+	public String fieldDetails(Model model, @PathVariable("id") Field field) {
+		model.addAttribute("field", field);
+		return "fieldDetails";
 	}
 
 	@GetMapping("/field/update/{id}")

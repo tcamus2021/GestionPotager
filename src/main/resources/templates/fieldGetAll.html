@@ -15,9 +15,7 @@
 				<th>Aera</th>
 				<th>GroundType</th>
 				<th>ExpositionType</th>
-				<th>Update</th>
-				<th>Delete</th>
-				<th>See implantations</th>
+				<th>Show</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,9 +24,7 @@
 				<td th:text="${field.aera}"></td>
 				<td th:text="${field.groundType}"></td>
 				<td th:text="${field.expositionType}"></td>
-				<td><a th:href="@{/field/update/{id}(id=${field.idField})}">Update</a></td>
-				<td><a th:href="@{/field/delete/{id}(id=${field.idField})}">Delete</a></td>
-				<td><a th:href="@{/implantation/{idImplantation}(idImplantation=${field.idField})}">See implantations</a></td>
+				<td><a th:href="@{/field/{id}(id=${field.idField})}">Show</a></td>
 			</tr>
 		</tbody>
 	</table>
