@@ -50,14 +50,24 @@ public class FieldController {
 	}
 
 	@GetMapping("/field/delete/{id}")
-	public String deleteTreatment(Model model, @PathVariable Integer idField) {
+	public String deleteTreatment(Model model, @PathVariable Integer id) {
+		String url = "redirect:/";
 		try {
 			List<Field> listeFields = manager.getAllField();
-			listeFields.removeIf(field -> field.getIdField() != idField);
-			manager.deleteField(listeFields.get(0));
+			listeFields.removeIf(field -> field.getIdField() != id);
+			if(listeFields.size() != 0) {
+				url = "redirect:/field/" + listeFields.get(0).getPotager().getIdPotager();
+				manager.deleteField(listeFields.get(0));
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		return url;
+	}
+	
+	@GetMapping("/field/add")
+	public String addField(Model model, Field field) {
+		return "fieldAdd";
 	}
 }
