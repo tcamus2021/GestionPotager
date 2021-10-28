@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.formation.eni.gestionPotager.bll.BLLexception;
 import com.formation.eni.gestionPotager.bll.PotagerManager;
 import com.formation.eni.gestionPotager.bo.Field;
-import com.formation.eni.gestionPotager.bo.Implantation;
 
 @Controller
 public class FieldController {

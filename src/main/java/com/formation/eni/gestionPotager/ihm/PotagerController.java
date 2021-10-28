@@ -68,8 +68,9 @@ public class PotagerController {
 	}
 	
 	@PostMapping("/potager/update/{id}")
-	public String updatePatager(@Valid PotagerForm potagerForm, BindingResult errors, Model model) {
+	public String updatePatager(@PathVariable Integer id, @Valid PotagerForm potagerForm, BindingResult errors, Model model) {
 		Potager potager = potagerForm.getPotager();
+		potager.setIdPotager(id);
 		try {
 			manager.updatePotager(potager);
 		} catch (BLLexception e) {

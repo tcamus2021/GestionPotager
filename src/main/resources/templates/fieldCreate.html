@@ -9,7 +9,7 @@
 	<h3 style="color:red" th:text="${error}"></h3>
 	<h3 style="color:green" th:text="${succes}"></h3>	
 	<h1>Complete form to build Field</h1>
-	<h2 th:text="|${potager.idPotager}|">some !</h2>
+	<h2 th:text="'Potager n°'+${potager.idPotager}"></h2>
 	<form th:action="@{/field/create/{idPotager}(idPotager=${potager.idPotager})}" th:object="${field}" method="post">
 	    <label for="aera">aera</label>
 	    <input type="number" step="1" th:field="*{aera}" id="aera" placeholder="aera">
