@@ -11,10 +11,10 @@
 	<h1>Complete form to build new Potager</h1>
 	<form th:action="@{/potager/create}" th:object="${potagerForm}" method="post">
 	    <label for="nom">nom</label>
-	    <input type="text" th:field="*{potager.nom}" id="nom" placeholder="potager.nom">
+	    <input type="text" th:field="*{potager.nom}" id="nom" placeholder="nom">
 	    <label for="aera">aera</label>
 	    <input type="number" step="1" th:field="*{potager.aera}" id="aera" placeholder="aera">
-	     <label for="location">location</label>
+	    <label for="location">location</label>
 	    <input type="text" th:field="*{potager.location}" id="location" placeholder="location">
 	    <label for="city">city</label>
 	    <input type="text" th:field="*{potager.city}" id="city" placeholder="city">
