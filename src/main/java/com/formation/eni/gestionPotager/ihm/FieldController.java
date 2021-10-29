@@ -36,10 +36,12 @@ public class FieldController {
 	@PostMapping("/field/create/{idPotager}")
 	public String createField(@PathVariable Integer idPotager, Model model, Field field) {
 		field.setPotager(manager.getPotagerById(idPotager));
+		System.err.println(idPotager);
 		try {
 			manager.insertField(field);
 		} catch (BLLexception e) {
 			model.addAttribute("error",e.getMessage());
+			model.addAttribute("potager", manager.getPotagerById(idPotager));
 			return "fieldCreate";
 		}
 		return "redirect:/field/"+field.getIdField();

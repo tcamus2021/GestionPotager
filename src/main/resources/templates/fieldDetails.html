@@ -107,7 +107,7 @@
 	</div>
 	<div class="d-flex justify-content-center">
 		<a th:href="@{/implantation/create/{idField}(idField=${field.idField})}"><button class="btn btn-success m-2">Create Implantation</button></a>
-		<a href="javascript:history.back();"><button class="btn btn-danger m-2">Go Back To Potager</button></a>
+		<a th:href="@{/potager/{id}(id=${field.potager.idPotager})}"><button class="btn btn-danger m-2">Go Back To Potager</button></a>
 	</div>
 </body>
 </html>

@@ -31,8 +31,6 @@ public class ImplantationController {
 	@PostMapping("/implantation/create/{idField}")
 	public String createImplantation(@PathVariable Integer idField, Implantation implantation, Model model) {
 		implantation.setField(manager.getFieldById(idField));
-		System.err.println(manager.getFieldById(idField));
-		System.err.println(implantation);
 		try {
 			manager.addImplentationInField(manager.getFieldById(idField), implantation);
 		} catch (BLLexception e) {
