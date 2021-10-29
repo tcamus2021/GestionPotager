@@ -31,7 +31,7 @@
 	    		<label for="name">Plant name</label>
 	    	</div>
 			<div class="col-6 d-flex justify-content-end">
-	    		<select th:field="*{plant}">
+	    		<select required="required" th:field="*{plant}">
 			    	<div th:each="plant : ${plants}" th:remove="tag">
 				    	<option th:value="${plant.idPlant}" th:text="${plant.name}+' ('+${plant.variety}+')'"></option>
 				    </div>
@@ -43,7 +43,7 @@
     			<label for="nbPlant">Number of Plant</label>
 	    	</div>
 			<div class="col-6 d-flex justify-content-end">
-			    <input type="number" min="1" step="1" th:field="*{nbPlant}" id="nbPlant">
+			    <input required="required" type="number" min="1" step="1" th:field="*{nbPlant}" id="nbPlant">
 			</div>
     	</div>
 	    <div class="d-flex offset-4 col-4">
@@ -51,7 +51,7 @@
 	    		<label for="establishment">Date establishment</label>
 		    </div>
 	    	<div class="col-6 d-flex justify-content-end">
-	    		<input type="date" th:field="*{establishment}" id="establishment" placeholder="date establishment">
+	    		<input required="required" type="date" th:field="*{establishment}" id="establishment" placeholder="date establishment">
 	    	</div>
 	    </div>
 	    <div class="d-flex offset-4 col-4">
@@ -59,7 +59,7 @@
 	    		<label for="harvest">Date harvest</label>
 		    </div>
 	    	<div class="col-6 d-flex justify-content-end">
-	    		<input type="date" th:field="*{harvest}" id="harvest" placeholder="date harvest">
+	    		<input required="required" type="date" th:field="*{harvest}" id="harvest" placeholder="date harvest">
 	    	</div>
 	    </div>
 	    <div class="d-flex justify-content-center m-2">

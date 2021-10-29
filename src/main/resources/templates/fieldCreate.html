@@ -31,7 +31,7 @@
 	    		<label for="aera">aera</label>
 	    	</div>
 			<div class="col-6 d-flex justify-content-end">
-	    		<input type="number" step="1" th:field="*{aera}" id="aera" value="1" placeholder="aera">
+	    		<input required="required" type="number" step="1" th:field="*{aera}" id="aera" value="1" placeholder="aera">
 	    	</div>
 	    </div>
 		<div class="d-flex offset-4 col-4">
@@ -39,7 +39,7 @@
     			<label for="groundType">groundType</label>
 	    	</div>
 			<div class="col-6 d-flex justify-content-end">
-			    <select th:field="*{groundType}" id="groundType">
+			    <select required="required" th:field="*{groundType}" id="groundType">
 			    	<option th:value="DIRT" th:text="DIRT"></option>
 		    		<option th:value="STONE" th:text="STONE"></option>
 		    		<option th:value="CLAY" th:text="CLAY"></option>
@@ -51,7 +51,7 @@
 	    		<label for="expositionType">expositionType</label>
 		    </div>
 	    	<div class="col-6 d-flex justify-content-end">
-	    		<select th:field="*{expositionType}" id="expositionType">
+	    		<select required="required" th:field="*{expositionType}" id="expositionType">
 		    		<option th:value="SUN" th:text="SUN"></option>
 		    		<option th:value="SHADOW" th:text="SHADOW"></option>
 		    		<option th:value="HALF_SHADE" th:text="HALF_SHADE"></option>

@@ -31,7 +31,7 @@
 	    		<label for="nom" class="justify-content-start">Name</label>
 	    	</div>
 			<div class="col-6 d-flex justify-content-end">
-	    		<input type="text" th:field="*{plant.name}" id="nom" placeholder="name">
+	    		<input required="required" type="text" th:field="*{plant.name}" id="nom" placeholder="name">
 	    	</div>
 	    </div>
 		<div class="d-flex offset-4 col-4">
@@ -39,7 +39,7 @@
     			<label for="plantType">Plant type</label>
 	    	</div>
 			<div class="col-6 d-flex justify-content-end">
-			    <select th:field="*{plant.plantType}" id="plantType">
+			    <select required="required" th:field="*{plant.plantType}" id="plantType">
 			    	<option value="FRUIT">FRUIT</option>
 			    	<option value="VEGETABLE">VEGETABLE</option>
 			    	<option value="LEAVE">LEAVE</option>
@@ -52,7 +52,7 @@
 		    	<label for="variety">Variety</label>
 		    </div>
 	    	<div class="col-6 d-flex justify-content-end">
-		    	<input type="text" th:field="*{plant.variety}" id="variety" placeholder="variety">
+		    	<input required="required" type="text" th:field="*{plant.variety}" id="variety" placeholder="variety">
 	    	</div>
 	    </div>
 	    <div class="d-flex offset-4 col-4">
@@ -60,7 +60,7 @@
 		    	<label for="aera">Aera</label>
 		    </div>
 	    	<div class="col-6 d-flex justify-content-end">
-		    	<input type="number" th:field="*{plant.aera}" id="aera" placeholder="aera">
+		    	<input required="required" type="number" th:field="*{plant.aera}" id="aera" placeholder="aera">
 		    </div>
 	    </div>
 	    <div class="d-flex justify-content-center m-2">

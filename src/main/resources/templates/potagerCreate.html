@@ -31,7 +31,7 @@
 	    		<label for="nom" class="justify-content-start">Name</label>
 	    	</div>
 			<div class="col-6 d-flex justify-content-end">
-	    		<input type="text" th:field="*{potager.nom}" id="nom" placeholder="nom" class="justify-content-end">
+	    		<input required="required" type="text" th:field="*{potager.nom}" id="nom" placeholder="nom" class="justify-content-end">
 	    	</div>
 	    </div>
 		<div class="d-flex offset-4 col-4">
@@ -39,7 +39,7 @@
     			<label for="aera">aera</label>
 	    	</div>
 			<div class="col-6 d-flex justify-content-end">
-			    <input type="number" step="1" th:field="*{potager.aera}" id="aera" placeholder="aera">
+			    <input required="required" type="number" step="1" th:field="*{potager.aera}" id="aera" placeholder="aera">
 			</div>
     	</div>
 	    <div class="d-flex offset-4 col-4">
@@ -47,7 +47,7 @@
 	    		<label for="location">location</label>
 		    </div>
 	    	<div class="col-6 d-flex justify-content-end">
-	    		<input type="text" th:field="*{potager.location}" id="location" placeholder="location">
+	    		<input required="required" type="text" th:field="*{potager.location}" id="location" placeholder="location">
 	    	</div>
 	    </div>
 	    <div class="d-flex offset-4 col-4">
@@ -55,11 +55,12 @@
 	    		<label for="city">city</label>
 		    </div>
 	    	<div class="col-6 d-flex justify-content-end">
-	    		<input type="text" th:field="*{potager.city}" id="city" placeholder="city">
+	    		<input required="required" type="text" th:field="*{potager.city}" id="city" placeholder="city">
 		    </div>
 	    </div>
 	    <div class="d-flex justify-content-center m-2">
-	    	<input type="submit" value="Create" class="btn btn-success m-2">   
+	    	<input type="submit" value="Create" class="btn btn-success m-2">
+	    	<a href="javascript:history.back();" class="btn btn-danger m-2">Cancel</a>
 	    </div>
 	</form>
 </body>

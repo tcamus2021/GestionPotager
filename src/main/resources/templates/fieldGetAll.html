@@ -33,7 +33,8 @@
 					<th class="text-center">Aera</th>
 					<th class="text-center">GroundType</th>
 					<th class="text-center">ExpositionType</th>
-					<th class="text-center">Show</th>
+					<th class="text-center">Potager</th>
+					<th class="text-center"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,6 +43,7 @@
 					<td th:text="${field.aera}" class="text-center"></td>
 					<td th:text="${field.groundType}" class="text-center"></td>
 					<td th:text="${field.expositionType}" class="text-center"></td>
+					<td th:text="${field.potager.idPotager}" class="text-center"></td>
 					<td class="text-center"><a th:href="@{/field/{id}(id=${field.idField})}"><button class="btn btn-primary">Show</button></a></td>
 				</tr>
 			</tbody>
