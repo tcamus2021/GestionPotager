@@ -70,7 +70,7 @@ public class WebServicePlant {
 	@PutMapping("/ws/plant")
 	public List<Plant> update(@RequestBody Plant plant) throws WSexception {
 		try {
-			manager.updatePlant(plant);
+			manager.updatePlantWS(plant);
 			return manager.getAllPlant();
 		} catch (Exception e) {
 			throw new WSexception(e.getMessage());
@@ -113,12 +113,12 @@ public class WebServicePlant {
 		if (one != null && two != null) {
 			one.associate(two);
 			try {
-				manager.updatePlant(one);
+				manager.updatePlantWS(one);
 			} catch (BLLexception e) {
 				throw new WSexception("Fail can't save first Plant!");
 			}
 			try {
-				manager.updatePlant(two);
+				manager.updatePlantWS(two);
 			} catch (BLLexception e) {
 				throw new WSexception("Fail can't save second Plant!");
 			}

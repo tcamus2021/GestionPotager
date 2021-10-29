@@ -90,6 +90,14 @@ public interface PotagerManager {
 	public void updatePlant(Plant plant) throws BLLexception;
 
 	/**
+	 * To update a plant for WS
+	 * 
+	 * @param plant
+	 * @throws BLLexception
+	 */
+	public void updatePlantWS(Plant plant) throws BLLexception;
+
+	/**
 	 * To delete a plant
 	 * 
 	 * @param plant

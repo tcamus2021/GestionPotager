@@ -179,6 +179,24 @@ public class PotagerManagerImpl implements PotagerManager {
 		else
 			throw new BLLexception("Plant does not exist");
 	}
+	
+	@Override
+	@Transactional
+	public void updatePlantWS(Plant plant) throws BLLexception {
+		if (plantNotExist(plant.getName(), plant.getVariety())) {
+			throw new BLLexception("BLL/updatePlant(): WARNING this plant already exists");
+		}
+		boolean find = false;
+		for (Plant plantFE : daoPlant.findAll()) {
+			if(plantFE.getIdPlant() == plant.getIdPlant()) {
+				find = true;
+			}
+		}
+		if(find)
+			daoPlant.save(plant);
+		else
+			throw new BLLexception("Plant does not exist");
+	}
 
 	@Override
 	@Transactional

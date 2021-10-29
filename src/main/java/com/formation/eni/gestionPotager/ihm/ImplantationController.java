@@ -109,6 +109,11 @@ public class ImplantationController {
 		} catch (BLLexception e) {
 			model.addAttribute("field", toSave);
 			model.addAttribute("error", e.getMessage());
+			try {
+				model.addAttribute("plants", manager.getAllPlant());
+			} catch (BLLexception e1) {
+				model.addAttribute("error", e1.getMessage());
+			}
 			return "implantationUpdate";
 		}
 		return "redirect:/field/" + toSave.getField().getIdField();

@@ -158,6 +158,11 @@ public class PotagerController {
 			return "potagerGetAll";
 		}
 		model.addAttribute("succes", "Potager delete with succes !");
+		try {
+			model.addAttribute("potagers", manager.getAllPotager());
+		} catch (BLLexception e) {
+			model.addAttribute("error", e.getMessage());
+		}
 		return "potagerGetAll";
 	}
 
