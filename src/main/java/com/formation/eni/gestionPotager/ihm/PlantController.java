@@ -13,12 +13,24 @@ import com.formation.eni.gestionPotager.bll.BLLexception;
 import com.formation.eni.gestionPotager.bll.PotagerManager;
 import com.formation.eni.gestionPotager.bo.Plant;
 
+/**
+ * class to control the plant
+ * 
+ * @author tcamus2021
+ *
+ */
 @Controller
 public class PlantController {
-	
+
 	@Autowired
 	PotagerManager manager;
 
+	/**
+	 * To see all the plant
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/plant")
 	public String plantGetAll(Model model) {
 		try {
@@ -28,13 +40,28 @@ public class PlantController {
 		}
 		return "plantGetAll";
 	}
-	
+
+	/**
+	 * To go at the form to update plant
+	 * 
+	 * @param model
+	 * @param plant
+	 * @return
+	 */
 	@GetMapping("/plant/update/{id}")
 	public String update(Model model, @PathVariable("id") Plant plant) {
 		model.addAttribute("plant", plant);
 		return "plantUpdate";
 	}
-	
+
+	/**
+	 * Treatment of the update
+	 * 
+	 * @param model
+	 * @param plant
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/plant/update/{id}")
 	public String delete(Model model, @Valid Plant plant, @PathVariable("id") Integer id) {
 		try {
@@ -45,7 +72,13 @@ public class PlantController {
 		}
 		return "redirect:/plant";
 	}
-	
+
+	/**
+	 * Treatment of the delete
+	 * 
+	 * @param plant
+	 * @return
+	 */
 	@GetMapping("/plant/delete/{id}")
 	public String delete(@PathVariable("id") Plant plant) {
 		try {
@@ -55,12 +88,25 @@ public class PlantController {
 		}
 		return "redirect:/plant";
 	}
-	
+
+	/**
+	 * Go to the creation of the plant
+	 * 
+	 * @param plant
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("plant/create")
 	public String create(Plant plant, Model model) {
 		return "plantCreate";
 	}
-	
+
+	/**
+	 * Treatment of creation
+	 * 
+	 * @param plant
+	 * @return
+	 */
 	@PostMapping("/plant/create")
 	public String createTreatment(@Valid Plant plant) {
 		try {
@@ -70,5 +116,5 @@ public class PlantController {
 		}
 		return "redirect:/plant/";
 	}
-	
+
 }
