@@ -6,9 +6,9 @@
 <title>Fields</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-info">
 	  <div class="container-fluid">
-	    <a class="navbar-brand" href="#">MyPotager</a>
+	    <a class="navbar-brand" th:href="@{/}">MyPotager</a>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
@@ -23,7 +23,8 @@
 	  </div>
 	</nav>
 	<h1 class="text-center col-12">Fields of Potager</h1>
-	<h3></h3>
+	<h3 class="text-danger" th:text="${error}"></h3>
+	<h3 class="text-success" th:text="${succes}"></h3>	
 	<div class="offset-2 col-8">
 		<table class="table">
 			<thead>
@@ -41,7 +42,7 @@
 					<td th:text="${field.aera}" class="text-center"></td>
 					<td th:text="${field.groundType}" class="text-center"></td>
 					<td th:text="${field.expositionType}" class="text-center"></td>
-					<td class="text-center"><a th:href="@{/field/{id}(id=${field.idField})}">Show</a></td>
+					<td class="text-center"><a th:href="@{/field/{id}(id=${field.idField})}"><button class="btn btn-primary">Show</button></a></td>
 				</tr>
 			</tbody>
 		</table>

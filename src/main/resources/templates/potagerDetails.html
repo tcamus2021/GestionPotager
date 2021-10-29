@@ -6,9 +6,9 @@
 <title>Show Potager</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-info">
 	  <div class="container-fluid">
-	    <a class="navbar-brand" href="#">MyPotager</a>
+	    <a class="navbar-brand" th:href="@{/}">MyPotager</a>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
@@ -22,9 +22,9 @@
 	    </div>
 	  </div>
 	</nav>
-	<h3 style="color:red" th:text="${error}"></h3>
-	<h3 style="color:green" th:text="${succes}"></h3>	
-	<h1 class="col-12 text-center">Informations about Potager </h1>
+	<h1 class="col-12 text-center">Informations about this Potager</h1>
+	<h3 class="text-danger" th:text="${error}"></h3>
+	<h3 class="text-success" th:text="${succes}"></h3>
 	<div class="offset-5 col-2 d-flex">
 		<div class="col-6 d-flex justify-content-start">
 			<span><strong>Identifier : </strong></span>
@@ -66,8 +66,8 @@
 		</div>
 	</div>
 	<div class="d-flex justify-content-center">
-		<a th:href="@{/potager/update/{id}(id=${potager.idPotager})}"><button class="btn btn-primary m-2">update</button></a>
-		<a th:href="@{/potager/delete/{id}(id=${potager.idPotager})}"><button class="btn btn-primary m-2">delete</button></a>
+		<a th:href="@{/potager/update/{id}(id=${potager.idPotager})}"><button class="btn btn-success m-2">update</button></a>
+		<a th:href="@{/potager/delete/{id}(id=${potager.idPotager})}"><button class="btn btn-danger m-2">delete</button></a>
 	</div>	
 	<br/>
 	<h2 class="col-12 text-center">List of Fields</h2>
@@ -88,14 +88,14 @@
 					<td th:text="${field.aera}" class="text-center"></td>
 					<td th:text="${field.groundType}" class="text-center"></td>
 					<td th:text="${field.expositionType}" class="text-center"></td>
-					<td class="text-center"><a th:href="@{/field/{id}(id=${field.idField})}">Show</a></td>
+					<td class="text-center"><a th:href="@{/field/{id}(id=${field.idField})}" class="btn btn-primary">Show</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="d-flex justify-content-center">
-		<a th:href="@{/field/create/{id}(id=${potager.idPotager})}"><button class="btn btn-primary m-2">Create a new field</button></a>
-		<a th:href="@{/potager}"><button class="btn btn-primary m-2">Go Back To List</button></a>
+		<a th:href="@{/field/create/{id}(id=${potager.idPotager})}"><button class="btn btn-success m-2">Create a new field</button></a>
+		<a th:href="@{/potager}"><button class="btn btn-danger m-2">Go Back To List</button></a>
 	</div> 
 </body>
 </html>

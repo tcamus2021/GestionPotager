@@ -6,9 +6,9 @@
 <title>Fields</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-info">
 	  <div class="container-fluid">
-	    <a class="navbar-brand" href="#">MyPotager</a>
+	    <a class="navbar-brand" th:href="@{/}">MyPotager</a>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
@@ -22,10 +22,10 @@
 	    </div>
 	  </div>
 	</nav>
-	<h3 style="color:red" th:text="${error}"></h3>
-	<h3 style="color:green" th:text="${succes}"></h3>	
+	<h3 class="text-danger" th:text="${error}"></h3>
+	<h3 class="text-success" th:text="${succes}"></h3>	
 	<div>
-		<h1 class="col-12 text-center">Informations about a Field</h1>
+		<h1 class="col-12 text-center">Informations about the field</h1>
 		
 		<div class="offset-5 col-2 d-flex">
 			<div class="col-6 d-flex justify-content-start">
@@ -72,8 +72,8 @@
 			</div>
 		</div>
 		<div class="d-flex justify-content-center">
-			<a th:href="@{/field/update/{id}(id=${field.idField})}"><button class="btn btn-primary m-2">Update</button></a>
-			<a th:href="@{/field/delete/{id}(id=${field.idField})}"><button class="btn btn-primary m-2">Delete</button></a>
+			<a th:href="@{/field/update/{id}(id=${field.idField})}"><button class="btn btn-success m-2">Update</button></a>
+			<a th:href="@{/field/delete/{id}(id=${field.idField})}"><button class="btn btn-danger m-2">Delete</button></a>
 		</div>
 	</div>	
 	<br/>
@@ -98,16 +98,16 @@
 					<td th:text="${implantation.establishment}" class="text-center"></td>
 					<td th:text="${implantation.harvest}" class="text-center"></td>
 					<td class="text-center">
-						<a th:href="@{/implantation/update/{id}(id=${implantation.idImplentation})}"><button class="btn btn-primary m-2">Update</button></a>
-						<a th:href="@{/implantation/delete/{id}(id=${implantation.idImplentation})}"><button class="btn btn-primary m-2">Delete</button></a>
+						<a th:href="@{/implantation/update/{id}(id=${implantation.idImplentation})}"><button class="btn btn-success m-2">Update</button></a>
+						<a th:href="@{/implantation/delete/{id}(id=${implantation.idImplentation})}"><button class="btn btn-danger m-2">Delete</button></a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="d-flex justify-content-center">
-		<a th:href="@{/implantation/create/{idField}(idField=${field.idField})}"><button class="btn btn-primary m-2">Create Implantation</button></a>
-		<a href="javascript:history.back();"><button class="btn btn-primary m-2">Go Back To Potager</button></a>
+		<a th:href="@{/implantation/create/{idField}(idField=${field.idField})}"><button class="btn btn-success m-2">Create Implantation</button></a>
+		<a href="javascript:history.back();"><button class="btn btn-danger m-2">Go Back To Potager</button></a>
 	</div>
 </body>
 </html>
