@@ -49,26 +49,33 @@ public class ImplantationController {
 	
 	@GetMapping("/implantation/update/{id}")
 	public String goUpdateImplantation(@PathVariable("id") Integer id, Model model, Implantation implantation) {
+		try {
+			model.addAttribute("plants", manager.getAllPlant());
+		} catch (BLLexception e) {
+			model.addAttribute("error", e.getMessage());
+		}
 		implantation = manager.getImplantationById(id);
 		model.addAttribute("implantation", implantation);
 		return "implantationUpdate";
 	}
 	
-//	@PostMapping("/implantation/update/{id}")
-//	public String updateImplantation(@PathVariable("id") Integer id, Model model, Implantation implantation) {
-//		Field toSave = manager.getFieldById(idField);
-//		toSave.setAera(field.getAera());
-//		toSave.setGroundType(field.getGroundType());
-//		toSave.setExpositionType(field.getExpositionType());
-//		try {
-//			manager.insertField(toSave);
-//		} catch (BLLexception e) {
-//			model.addAttribute("field", toSave);
-//			model.addAttribute("error", e.getMessage());
-//			return "implantationUpdate";
-//		}
-//		return "redirect:/field/"+toSave.getIdField();
-//	}
+	@PostMapping("/implantation/update/{id}")
+	public String updateImplantation(@PathVariable("id") Integer id, Model model, Implantation implantation) {
+		Implantation toSave = manager.getImplantationById(id);
+		toSave.setPlant(implantation.getPlant());
+		toSave.setNbPlant(implantation.getNbPlant());
+		toSave.setEstablishment(implantation.getEstablishment());
+		toSave.setHarvest(implantation.getHarvest());
+		try {
+			manager.deleteImplantation(toSave);
+			manager.addImplentationInField(toSave.getField(), toSave);
+		} catch (BLLexception e) {
+			model.addAttribute("field", toSave);
+			model.addAttribute("error", e.getMessage());
+			return "implantationUpdate";
+		}
+		return "redirect:/field/"+toSave.getField().getIdField();
+	}
 	
 	@GetMapping("/implantation/delete/{id}")
 	public String deleteImplantation(@PathVariable Integer id, Model model) {
