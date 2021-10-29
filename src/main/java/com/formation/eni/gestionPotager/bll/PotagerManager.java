@@ -198,4 +198,8 @@ public interface PotagerManager {
 	 * @throws BLLexception
 	 */
 	public Field getFieldById(Integer id);
+
+	public Implantation getImplantationById(Integer id);
+
+	public void deleteImplantation(Implantation implantation);
 }

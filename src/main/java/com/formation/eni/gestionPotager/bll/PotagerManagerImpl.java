@@ -205,8 +205,7 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Transactional
 	public void addImplentationInField(Field field, Implantation implantation) throws BLLexception {
 		if (!limitOfPlantsNotReached(field, implantation)) {
-			throw new BLLexception(
-					"BLL/addImplentationInField(): IMPOSSIBLE limit of different Plant already reached for this Field");
+			throw new BLLexception("BLL/addImplentationInField(): IMPOSSIBLE limit of different Plant already reached for this Field");
 		}
 		if (!sizeOfPlantsLowerThanField(field, implantation)) {
 			throw new BLLexception("BLL/addImplentationInField()|'aera': IMPOSSIBLE this Plant have not enough place in this Field");
@@ -565,5 +564,16 @@ public class PotagerManagerImpl implements PotagerManager {
 	@Override
 	public Field getFieldById(Integer id) {
 		return daoField.findById(id).orElse(null);
+	}
+
+	@Override
+	public Implantation getImplantationById(Integer id) {
+		return daoImplantation.findById(id).orElse(null);
+	}
+
+	@Override
+	public void deleteImplantation(Implantation implantation) {
+		daoImplantation.delete(implantation);
+		
 	}
 }

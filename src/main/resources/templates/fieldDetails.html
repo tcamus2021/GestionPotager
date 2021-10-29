@@ -87,6 +87,7 @@
 					<th class="text-center">Number of plant</th>
 					<th class="text-center">Establishment</th>
 					<th class="text-center">Harvest Time</th>
+					<th class="text-center"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -96,13 +97,17 @@
 					<td th:text="${implantation.nbPlant}" class="text-center"></td>
 					<td th:text="${implantation.establishment}" class="text-center"></td>
 					<td th:text="${implantation.harvest}" class="text-center"></td>
+					<td class="text-center">
+						<a th:href="@{/implantation/update/{id}(id=${implantation.idImplentation})}"><button class="btn btn-primary m-2">Update</button></a>
+						<a th:href="@{/implantation/delete/{id}(id=${implantation.idImplentation})}"><button class="btn btn-primary m-2">Delete</button></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="d-flex justify-content-center">
 		<a th:href="@{/implantation/create/{idField}(idField=${field.idField})}"><button class="btn btn-primary m-2">Create Implantation</button></a>
-		<a th:href="@{/potager}"><button class="btn btn-primary m-2">Go Back To Potager List</button></a>
+		<a href="javascript:history.back();"><button class="btn btn-primary m-2">Go Back To Potager</button></a>
 	</div>
 </body>
 </html>

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.formation.eni.gestionPotager.bll.BLLexception;
 import com.formation.eni.gestionPotager.bll.PotagerManager;
-import com.formation.eni.gestionPotager.bo.Field;
 import com.formation.eni.gestionPotager.bo.Implantation;
 
 @Controller
@@ -46,5 +45,37 @@ public class ImplantationController {
 			return "implantationCreate";
 		}
 		return "redirect:/field/"+idField;
+	}
+	
+	@GetMapping("/implantation/update/{id}")
+	public String goUpdateImplantation(@PathVariable("id") Integer id, Model model, Implantation implantation) {
+		implantation = manager.getImplantationById(id);
+		model.addAttribute("implantation", implantation);
+		return "implantationUpdate";
+	}
+	
+//	@PostMapping("/implantation/update/{id}")
+//	public String updateImplantation(@PathVariable("id") Integer id, Model model, Implantation implantation) {
+//		Field toSave = manager.getFieldById(idField);
+//		toSave.setAera(field.getAera());
+//		toSave.setGroundType(field.getGroundType());
+//		toSave.setExpositionType(field.getExpositionType());
+//		try {
+//			manager.insertField(toSave);
+//		} catch (BLLexception e) {
+//			model.addAttribute("field", toSave);
+//			model.addAttribute("error", e.getMessage());
+//			return "implantationUpdate";
+//		}
+//		return "redirect:/field/"+toSave.getIdField();
+//	}
+	
+	@GetMapping("/implantation/delete/{id}")
+	public String deleteImplantation(@PathVariable Integer id, Model model) {
+		Implantation implant = manager.getImplantationById(id);
+		manager.deleteImplantation(implant);	
+		// TODO pass msg to redirect !!
+		model.addAttribute("succes","Implantation delete with succes !");
+		return "redirect:/field/"+implant.getField().getIdField();
 	}
 }
