@@ -206,10 +206,10 @@ public class PotagerManagerImpl implements PotagerManager {
 	public void addImplentationInField(Field field, Implantation implantation) throws BLLexception {
 		if (!limitOfPlantsNotReached(field, implantation)) {
 			throw new BLLexception(
-					"BLL/addPlantInField(): IMPOSSIBLE limit of different Plant already reached for this Field");
+					"BLL/addImplentationInField(): IMPOSSIBLE limit of different Plant already reached for this Field");
 		}
 		if (!sizeOfPlantsLowerThanField(field, implantation)) {
-			throw new BLLexception("BLL/addPlantInField(): IMPOSSIBLE this Plant have not enough place in this Field");
+			throw new BLLexception("BLL/addImplentationInField()|'aera': IMPOSSIBLE this Plant have not enough place in this Field");
 		}
 		
 		// TODO AJOUT dans l'objet avant la sauvegarde
@@ -374,9 +374,9 @@ public class PotagerManagerImpl implements PotagerManager {
 			}
 		}
 		if (lstPlant.contains(implantation.getPlant())) {
-			return false;
+			return true;
 		}
-		if (lstPlant.size() > PLANTS_LIMIT) {
+		if (lstPlant.size() < PLANTS_LIMIT) {
 			return true;
 		}
 		return false;

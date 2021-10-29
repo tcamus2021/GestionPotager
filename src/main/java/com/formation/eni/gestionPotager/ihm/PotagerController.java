@@ -89,7 +89,7 @@ public class PotagerController {
 			try {
 				model.addAttribute("potagers", manager.getAllPotager());
 			} catch (BLLexception e1) {
-				model.addAttribute("error",e.getMessage());
+				model.addAttribute("error",e1.getMessage());
 			}
 			return "potagerGetAll";
 		}

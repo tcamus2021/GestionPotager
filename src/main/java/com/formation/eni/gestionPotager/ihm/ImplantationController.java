@@ -31,12 +31,18 @@ public class ImplantationController {
 	
 	@PostMapping("/implantation/create/{idField}")
 	public String createImplantation(@PathVariable Integer idField, Implantation implantation, Model model) {
+		implantation.setField(manager.getFieldById(idField));
 		System.err.println(manager.getFieldById(idField));
 		System.err.println(implantation);
 		try {
 			manager.addImplentationInField(manager.getFieldById(idField), implantation);
 		} catch (BLLexception e) {
 			model.addAttribute("error",e.getMessage());
+			try {
+				model.addAttribute("plants", manager.getAllPlant());
+			} catch (BLLexception e1) {
+				model.addAttribute("error", e1.getMessage());
+			}
 			return "implantationCreate";
 		}
 		return "redirect:/field/"+idField;

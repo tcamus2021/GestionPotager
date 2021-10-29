@@ -30,11 +30,11 @@
 	    <label for="name">Plant name</label>
 	    <select th:field="*{plant}">
 	    	<div th:each="plant : ${plants}" th:remove="tag">
-		    	<option th:value="${plant}" th:text="${plant.name}+' ('+${plant.variety}+')'"></option>
+		    	<option th:value="${plant.idPlant}" th:text="${plant.name}+' ('+${plant.variety}+')'"></option>
 		    </div>
 		</select>
 	    <label for="nbPlant">Number of Plant</label>
-	    <input type="number" min="1" step="1" th:field="*{nbPlant}" id="nbPlant" >
+	    <input type="number" min="1" step="1" th:field="*{nbPlant}" id="nbPlant">
 	    <label for="establishment">Date establishment</label>
 	    <input type="date" th:field="*{establishment}" id="establishment" placeholder="date establishment">
 	    <label for="harvest">Date harvest</label>
