@@ -27,6 +27,24 @@ public class FieldController {
 		return "fieldGetAll";
 	}
 	
+	@GetMapping("/field/create/{idPotager}")
+	public String goCreateField(@PathVariable Integer idPotager, Model model, Field field) {
+		model.addAttribute("potager", manager.getPotagerById(idPotager));
+		return "fieldCreate";
+	}
+	
+	@PostMapping("/field/create/{idPotager}")
+	public String createField(@PathVariable Integer idPotager, Model model, Field field) {
+		field.setPotager(manager.getPotagerById(idPotager));
+		try {
+			manager.insertField(field);
+		} catch (BLLexception e) {
+			model.addAttribute("error",e.getMessage());
+			return "fieldCreate";
+		}
+		return "redirect:/field/"+field.getIdField();
+	}
+	
 	@GetMapping("/field/{id}")
 	public String fieldDetails(Model model, @PathVariable("id") Field field) {
 		model.addAttribute("field", field);
@@ -68,23 +86,5 @@ public class FieldController {
 		// TODO pass msg to redirect !!
 		model.addAttribute("succes","Field delete with succes !");
 		return "redirect:/potager";
-	}
-	
-	@GetMapping("/field/create/{idPotager}")
-	public String goCreateField(@PathVariable Integer idPotager, Model model, Field field) {
-		model.addAttribute("potager", manager.getPotagerById(idPotager));
-		return "fieldCreate";
-	}
-	
-	@PostMapping("/field/create/{idPotager}")
-	public String createField(@PathVariable Integer idPotager, Model model, Field field) {
-		field.setPotager(manager.getPotagerById(idPotager));
-		try {
-			manager.insertField(field);
-		} catch (BLLexception e) {
-			model.addAttribute("error",e.getMessage());
-			return "fieldCreate";
-		}
-		return "redirect:/field/"+field.getIdField();
 	}
 }

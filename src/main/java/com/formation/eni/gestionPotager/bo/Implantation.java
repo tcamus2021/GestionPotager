@@ -2,13 +2,13 @@ package com.formation.eni.gestionPotager.bo;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -31,7 +31,9 @@ public class Implantation {
 	@OneToOne
 	private Plant plant;
 	private Integer nbPlant;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate establishment;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate harvest;
 	@ManyToOne
 	@JsonBackReference

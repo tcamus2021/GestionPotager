@@ -28,7 +28,7 @@ public class PotagerController {
 	}
 	
 	@GetMapping("/potager")
-	public String listPotager(Model model) {
+	public String potagerGetAll(Model model) {
 		try {
 			model.addAttribute("potagers", manager.getAllPotager());
 		} catch (BLLexception e) {
