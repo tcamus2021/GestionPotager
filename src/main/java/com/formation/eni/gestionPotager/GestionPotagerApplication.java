@@ -86,17 +86,17 @@ public class GestionPotagerApplication implements CommandLineRunner {
 
 		// field to implantation
 		field1.addImplentation(implantation1);
-		field1.addImplentation(implantation2);
-		field2.addImplentation(implantation3);
-		field2.addImplentation(implantation4);
-		field3.addImplentation(implantation5);
-		field3.addImplentation(implantation6);
-		field4.addImplentation(implantation7);
-		field5.addImplentation(implantation8);
-		field6.addImplentation(implantation9);
-		field6.addImplentation(implantation10);
-		field7.addImplentation(implantation11);
-		field7.addImplentation(implantation12);
+		field1.addImplentation(implantation12);
+		field2.addImplentation(implantation2);
+		field2.addImplentation(implantation11);
+		field3.addImplentation(implantation3);
+		field3.addImplentation(implantation10);
+		field4.addImplentation(implantation4);
+		field5.addImplentation(implantation9);
+		field6.addImplentation(implantation5);
+		field6.addImplentation(implantation8);
+		field7.addImplentation(implantation6);
+		field7.addImplentation(implantation7);
 
 		// insert in db of this data
 		try {

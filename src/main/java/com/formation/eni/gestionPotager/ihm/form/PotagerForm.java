@@ -7,6 +7,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Class for the form of potager
+ * 
+ * @author tcamus2021
+ *
+ */
 @Data
 @Builder
 @NoArgsConstructor

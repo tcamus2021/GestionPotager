@@ -209,9 +209,10 @@ public class PotagerManagerImpl implements PotagerManager {
 		}
 		if (!sizeOfPlantsLowerThanField(field, implantation)) {
 			throw new BLLexception("BLL/addImplentationInField()|'aera': IMPOSSIBLE this Plant have not enough place in this Field");
-		}	
-		// TODO AJOUT dans l'objet avant la sauvegarde
 
+		}
+		daoPlant.save(implantation.getPlant());
+		daoImplantation.save(implantation);
 	}
 
 	@Override
