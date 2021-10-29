@@ -561,4 +561,9 @@ public class PotagerManagerImpl implements PotagerManager {
 	public List<Plant> getAllAssociations() {
 		return daoPlant.findAllWhereAssociations();
 	}
+
+	@Override
+	public Field getFieldById(Integer id) {
+		return daoField.findById(id).orElse(null);
+	}
 }

@@ -1,7 +1,5 @@
 package com.formation.eni.gestionPotager.ihm;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +22,7 @@ public class FieldController {
 		try {
 			model.addAttribute("fields", manager.getAllField());
 		} catch (BLLexception e) {
-			e.printStackTrace();
+			model.addAttribute("error", e.getMessage());
 		}
 		return "fieldGetAll";
 	}
@@ -34,44 +32,42 @@ public class FieldController {
 		model.addAttribute("field", field);
 		return "fieldDetails";
 	}
-
+	
 	@GetMapping("/field/update/{id}")
-	public String update(Model model, @PathVariable("id") Field field) {
+	public String goUpdate(@PathVariable("id") Integer id, Model model, Field field) {
+		field = manager.getFieldById(id);
 		model.addAttribute("field", field);
 		return "fieldUpdate";
-	}
-
-	@GetMapping("/field/update/treatment")
-	public String goFieldTable() {
-		return "redirect:/";
-	}
-
-	@PostMapping("/field/update/treatment")
-	public String updateTreatment(Model model, Field field) {
-		model.addAttribute("field", field);
-		return "fieldUpdate";
-	}
-
-	@GetMapping("/field/delete/{id}")
-	public String deleteTreatment(Model model, @PathVariable Integer id) {
-		String url = "redirect:/";
-		try {
-			List<Field> listeFields = manager.getAllField();
-			listeFields.removeIf(field -> field.getIdField() != id);
-			if(listeFields.size() != 0) {
-				url = "redirect:/field/" + listeFields.get(0).getPotager().getIdPotager();
-				manager.deleteField(listeFields.get(0));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return url;
 	}
 	
-	@GetMapping("/field/add")
-	public String addField(Model model, Field field) {
-		return "fieldAdd";
+	@PostMapping("/field/update/{id}")
+	public String update(@PathVariable("id") Integer idField, Model model, Field field) {
+		Field toSave = manager.getFieldById(idField);
+		toSave.setAera(field.getAera());
+		toSave.setGroundType(field.getGroundType());
+		toSave.setExpositionType(field.getExpositionType());
+		try {
+			manager.insertField(toSave);
+		} catch (BLLexception e) {
+			model.addAttribute("field", toSave);
+			model.addAttribute("error", e.getMessage());
+			return "fieldUpdate";
+		}
+		return "redirect:/field/"+toSave.getIdField();
+	}
+	
+	@GetMapping("/field/delete/{id}")
+	public String deleteField(@PathVariable Integer id, Model model) {
+		try {
+			manager.deleteField(manager.getFieldById(id));
+		} catch (BLLexception e) {
+			model.addAttribute("error", e.getMessage());
+			model.addAttribute("field",manager.getFieldById(id));
+			return "fieldDetails";
+		}
+		// TODO pass msg to redirect !!
+		model.addAttribute("succes","Field delete with succes !");
+		return "redirect:/potager";
 	}
 	
 	@GetMapping("/field/create/{idPotager}")

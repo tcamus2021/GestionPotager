@@ -190,4 +190,12 @@ public interface PotagerManager {
 	 * @throws BLLexception
 	 */
 	public List<Plant> getAllAssociations();
+
+	/**
+	 * get List of associations
+	 * 
+	 * @param id
+	 * @throws BLLexception
+	 */
+	public Field getFieldById(Integer id);
 }
